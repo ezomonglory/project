@@ -49,7 +49,7 @@ import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 
 const Scan = (props) => {
-    const [data, setData] = useState('No result');
+    const [data, setData] = useState('No result yet');
    const  handleScan = (data) => {
         if (data) {
          setData({
