@@ -2,7 +2,7 @@ import Head from 'next/head'
 import React, { useState } from 'react'
 import StudentHeader from '../../components/StudentHeader'
 import Image from 'next/image'
-import { QrReader } from 'react-qr-reader';
+import QrReader from 'react-qr-scanner'
 import AttendanceGrid from '../../components/AttendanceGrid'
 
 const Index = () => {
