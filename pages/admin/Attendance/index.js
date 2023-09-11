@@ -59,7 +59,9 @@ const Home = () => {
                                 <h2 className=' text-[#9E9E9E] md:text-[14px] md:leading-[22px] md:font-[400] text-[12px] '>Track student attendance with this QR Code</h2>
                             </div>
 
-                            <Image src={qrImage} width={220} height={220} alt="Qr-code" />
+                            <Image src={qrImage} width={220} height={220} alt="Qr-code" className='hidden md:block' />
+                            <Image src={qrImage} width={220} height={220} alt="Qr-code" className="block md:hidden" />
+
 
                             <div className='w-[80%] mx-auto'>
                                 <div className=' mt-[16px] w-full h-[40px] cursor-pointer flex items-center justify-center bg-[#183DA7] text-[#fff] border-[0.5px] border-[#E2EAFE]  py-[12px] px-[16px] text-center rounded-md leading-[24px] ' > Share </div>
@@ -128,7 +130,9 @@ const Home = () => {
 
 
                         <div className='fixed right-[20px] items-center justify-center flex bottom-[20%] bg-[#183DA7] rounded-full w-[48px] h-[48px] md:hidden newqrcode' onClick={() => {
+                            qrcode()
                             setOpenModal(true)
+
                         }}>
                             <Image src="/image/QR Code.svg" alt="plus" width={24} height={24} />
                         </div>
