@@ -4,6 +4,7 @@ import StudentHeader from '../../components/StudentHeader'
 import Image from 'next/image'
 import QrReader from 'react-qr-scanner'
 import AttendanceGrid from '../../components/AttendanceGrid'
+import Scan from '../../components/Scan'
 
 const Index = () => {
     const [data, setData] = useState('No result');
@@ -24,15 +25,8 @@ const Index = () => {
 
             <main className=" bg-[#F4F4F4] h-full">
 
-                {scan ? <>
-                    <QrReader
-                        facingMode="rear"
-                        delay={this.state.delay}
-                        style={previewStyle}
-                        onError={this.handleError}
-                        onScan={this.handleScan}
-                    />
-                    <p>{this.state.result}</p> </> :
+                {scan ? <Scan />
+                    :
                     <>
 
                         <StudentHeader />
