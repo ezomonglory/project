@@ -2,6 +2,7 @@ import React from 'react'
 import AttendanceCard from './AttendanceCard'
 
 const AttendanceGrid = () => {
+    
   return (
     <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-y-[24px] md:gap-x-[48px] md:gap-y-[32px]'>
         <AttendanceCard course="csc427" percentage="98%" />
