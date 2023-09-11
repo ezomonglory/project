@@ -246,7 +246,7 @@ export default class App extends Component {
               <td>{this.state.isValid}</td>
             </tr>
             <tr>
-              <td>Valid from:</td>
+              <td>Valid from es:</td>
               <td>{this.state.validFrom}</td>
             </tr>
             <tr>
