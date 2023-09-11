@@ -1,26 +1,86 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@font-face {
+	font-family: "neue_montrealmedium";
+	src: url("../fonts/neuemontreal-medium-webfont.woff2") format("woff2"),
+		url("../fonts/neuemontreal-medium-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@font-face {
+	font-family: "neue_montrealregular";
+	src: url("../fonts/neuemontreal-regular-webfont.woff2") format("woff2"),
+		url("../fonts/neuemontreal-regular-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 
-* {
-  box-sizing: border-box;
+body, html{
+    font-family: "neue_montrealregular" ;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.medium{
+    font-family: "neue_montrealmedium";
+}
+
+
+[current-link = "page" ]{
+    padding: 8px;
+    border-radius: 5px;
+    color: #183DA7;
+    background-color: #E2EAFE;
+}
+
+[course-link  = "page" ]{        
+    color: #183DA7;    
+}
+
+[current-link = "null" ]{
+    padding: 8px;
+    border-radius: 5px;    
+    background-color: white;
+}
+
+table{
+    background-color: white;    
+    width: 100%;    
+    border-color: black;
+    border-collapse: collapse;
+    border-radius: 5px;
+    position: relative;
+}
+
+thead{
+    background-color: white;
+    position: sticky;    
+    top: 0px;
+}
+
+tr,td,thead, tbody{
+    padding: 12px;
+    padding-left: 34px;
+    border-bottom: 0.5px solid #e9e9e9;    
+}
+
+
+.scroll-hidden::-webkit-scrollbar{
+    display: none;
+}
+
+
+.modalBackground{
+     background-color: black;
+     opacity: 100%;
+     display: flex;
+     /* align-items: center; */
+     justify-content: center;
+}
+
+.animation{
+    transition: right .5s ease-in;
 }
