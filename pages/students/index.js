@@ -7,7 +7,7 @@ import AttendanceGrid from '../../components/AttendanceGrid'
 
 const Index = () => {
     const [data, setData] = useState('No result');
-    const [scan, setScan] = useState(true);
+    const [scan, setScan] = useState(false);
 
 
     const scanCode = () => {
