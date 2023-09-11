@@ -242,7 +242,7 @@ export default class App extends Component {
         <table>
           <tbody>
             <tr>
-              <td>Valid:</td>
+              <td>Validd:</td>
               <td>{this.state.isValid}</td>
             </tr>
             <tr>
