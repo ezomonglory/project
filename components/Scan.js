@@ -51,7 +51,9 @@ import { QrReader } from 'react-qr-reader';
 const Scan = (props) => {
     const [data, setData] = useState('No result ');
     const handleScan = (data) => {
+
         if (data) {
+            alert(data)
             setData({
                 qrCodeContent: data
             });
