@@ -50,23 +50,26 @@ import { QrReader } from 'react-qr-reader';
 
 const Scan = (props) => {
     const [data, setData] = useState('No result');
+   const  handleScan = (data) => {
+        if (data) {
+         setData({
+            qrCodeContent: data
+          });
+              
+        }
+      };
+    
+     const  handleError = (err) => {
+        console.error(err);
+      };
 
     return (
         <>
             <QrReader
-                constraints={{
-                    facingMode: "user"
-                }}
-                onResult={(result, error) => {
-                    if (!!result) {
-                        setData(result?.text);
-                    }
-
-                    if (!!error) {
-                        console.info(error);
-                    }
-                }}
-                style={{ width: '100%' }}
+              delay={300}
+              onError={handleError}
+              onScan={handleScan}
+              style={{ width: "100%" }}
             />
             <p>{data}</p>
         </>
