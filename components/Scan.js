@@ -232,8 +232,9 @@ export default class App extends Component {
                 facingMode:"environment"
             }}
               delay={300}
-              onError={this.handleError}
-              onScan={this.handleScan}
+              onResult={
+                this.handleScan
+              }
               style={{ width: "100%" }}
             />
           </div>
