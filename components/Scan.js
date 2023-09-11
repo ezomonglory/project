@@ -66,9 +66,9 @@ const Scan = (props) => {
     return (
         <>
             <QrReader
-                constraints={{
-                    facingMode: 'environment'
-                }}
+                // constraints={{
+                //     facingMode: 'environment'
+                // }}
                 delay={300}
                 onError={handleError}
                 onScan={handleScan}
