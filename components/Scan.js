@@ -55,8 +55,7 @@ const Scan = (props) => {
         <>
             <QrReader
                 constraints={{
-                    audio: false,
-                    video: { facingMode: "environment" }
+                    facingMode: "user"
                 }}
                 onResult={(result, error) => {
                     if (!!result) {
