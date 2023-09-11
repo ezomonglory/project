@@ -26,20 +26,15 @@ const Index = () => {
 
                 {scan ? <>
                     <QrReader
-                        onResult={(result, error) => {
-                            if (!!result) {
-                                setData(result?.text);
-                            }
-
-                            if (!!error) {
-                                console.info(error);
-                            }
-                        }}
-                        style={{ width: '100%' }}
+                        facingMode="rear"
+                        delay={this.state.delay}
+                        style={previewStyle}
+                        onError={this.handleError}
+                        onScan={this.handleScan}
                     />
-                    <p>{data}</p></> :
-
+                    <p>{this.state.result}</p> </> :
                     <>
+
                         <StudentHeader />
                         <div className='md:px-[128px] mt-[40px] px-[20px]'>
                             <div className='flex items-center justify-between mb-[32px]'>
@@ -53,7 +48,7 @@ const Index = () => {
                                 <div className='fixed right-[20px] items-center justify-center flex bottom-[20%] bg-[#183DA7] rounded-full w-[48px] h-[48px] md:hidden' onClick={() => {
                                     setScan(true)
                                 }}>
-                                      <Image src="/image/Frame.svg" width={20} height={20} alt="scan" />
+                                    <Image src="/image/Frame.svg" width={20} height={20} alt="scan" />
                                 </div>
 
 
