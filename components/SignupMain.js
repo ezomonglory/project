@@ -1,17 +1,29 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Button from "./Button"
 import InputField from "./InputField"
 import { Router, useRouter } from "next/router"
+import axios from "axios"
+
 
 
 const SignUpMain = () => {
     const [student, setStudent] = useState(false)
+    const [role, setRole] = useState("")
+    const nameRef = useRef(null)
+    const matRef = useRef(null)
+    const passwordRef = useRef(null)
+    const roleRef = useRef(null)
     const router = useRouter()
 
     useEffect(() => {
         console.log("hey student ")
+
     }, [student])
+
+    useEffect(() => {
+        setRole("Teacher")
+    }, [])
 
     return (
         <div className="space-y-[32px]">
@@ -25,29 +37,46 @@ const SignUpMain = () => {
                     <div className="mx-auto flex flex-row bg-[#E4E4E4] rounded-full p-[8px] cursor-pointer mt-[40px]">
                         <div className={`text-[14px] medium font-[500] rounded-full leading-[24px] px-[40px] py-[8px]  ${student ? "text-[#9E9E9E] " : "text-[#141414] bg-white"}`} onClick={() => {
                             setStudent(false)
+                            setRole("Teacher")
                         }}>Lecturer</div>
                         <div className={`text-[14px] medium font-[500] rounded-full leading-[24px] px-[40px] py-[8px] ${!student ? "text-[#9E9E9E]" : "text-[#141414] bg-white"}`} onClick={() => {
                             setStudent(true)
+                            setRole("Student")
                         }}>Student</div>
                     </div>
                 </div>
 
 
                 <div className="w-full">
-                    <InputField label={"Full Name"} type="text" />
+                    <InputField label={"Full Name"} type="text" ref={nameRef} />
                 </div>
 
                 <div className="w-full">
-                    <InputField label={student ? "Matric No" : "Staff ID"} type="text" />
+                    <InputField label={student ? "Matric No" : "Staff ID"} type="text" ref={matRef} />
                 </div>
 
                 <div className="w-full">
-                    <InputField label={"Password"} type="text" />
+                    <InputField label={"Password"} type="text" ref={passwordRef} />
                 </div>
             </div>
 
             <div>
-                <Button text="Create Account" />
+                <div onClick={() => {
+
+                    const data = {
+                        full_name: nameRef?.current.value,
+                        identity_number: matRef?.current.value,
+                        password: passwordRef?.current.value,
+                        role: role,
+                    }                    
+                    try {
+                        axios.post("https://attendx-2hi6.onrender.com/auth/register", data)
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }}>
+                    <Button text="Create Account" />
+                </div>
                 <div className="md:hidden text-center mt-[10px] medium">
                     <h2>Have an account? <a href="/SignIn" className="text-[#183DA7]">Login</a></h2>
                 </div>

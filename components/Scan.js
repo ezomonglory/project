@@ -238,23 +238,7 @@ export default class App extends Component {
               style={{ width: "100%" }}
             />
           </div>
-        ) : null}
-        <table>
-          <tbody>
-            <tr>
-              <td>Validd:</td>
-              <td>{this.state.isValid}</td>
-            </tr>
-            <tr>
-              <td>Valid from es:</td>
-              <td>{this.state.validFrom}</td>
-            </tr>
-            <tr>
-              <td>Valid to:</td>
-              <td>{this.state.validTo}</td>
-            </tr>
-          </tbody>
-        </table>
+        ) : null}   
 
         {this.state.errors.length > 0 && <p>Errors</p> &&
           this.state.errors.map((error, i) => (
@@ -269,12 +253,7 @@ export default class App extends Component {
           cols="50"
           value={this.state.qrCodeContent}
           onChange={this.handleChange}
-        />
-        <p>
-          <button disabled={!this.validPrefix()} onClick={this.handleValidate}>
-            Validate
-          </button>
-        </p>
+        />       
       </div>
     );
   }
