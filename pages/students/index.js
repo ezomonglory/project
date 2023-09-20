@@ -6,11 +6,15 @@ import Image from 'next/image'
 import AttendanceGrid from '../../components/AttendanceGrid'
 import Scan from '../../components/Scan'
 import { QrReader } from 'react-qr-reader';
+import axios from 'axios'
 
 const Index = () => {
     const [user, setUser] = useState()
     const [courses, setCourses] = useState()
     const [scan, setScan] = useState(false);
+    const [attendance, setAttendance] = useState([])
+    const [Session, setSession] = useState([])
+    const [called, setCalled] = useState(false)
     const qrRef = useRef(null)
 
 
@@ -23,20 +27,46 @@ const Index = () => {
     }, [])
 
     useEffect(() => {
-        
-        if(user){
+        if (user) {
             setCourses(user.courses)
         }
-                    
     }, [user])
 
-    useEffect(()=> {
-        console.log(courses)
+    useEffect(() => {
+        if (courses) {
+            console.log(courses)
+            courses?.forEach(element => {
+                getSession(element.id)
+            });
+        }
     }, [courses])
 
-    const getSession = async () => {
+    useEffect(() => {
+        console.log("calllld")
+        if (!called) {
+            console.log(attendance)
+        }
 
+    }, [called])
 
+    const getSession = async (id) => {
+        await axios.get(`https://attendx-2hi6.onrender.com/session/get-session/${id}`).then((res) => {
+            console.log(res)
+            res.data.forEach((data) => {
+                Session.push(data)
+                // console.log(Session)
+                data.attendance.forEach((attend) => {
+                    if (attend.matric_number === user.identity_number) {
+                        if (!attendance.includes(data)) {
+                            attendance.push(data)
+                        }
+                        setCalled(!called)
+                        console.log("heyyy")
+                        console.log(attendance)
+                    }
+                })
+            })
+        })
     }
 
 
@@ -55,7 +85,7 @@ const Index = () => {
                     <>
 
                         <StudentHeader />
-                        <div className='md:px-[128px] mt-[40px] px-[20px]'>
+                        <div className='md:px-[128px] mt-[40px] px-[20px] h-screen'>
                             <div className='flex items-center justify-between mb-[32px]'>
                                 <h1 className='text-[18px] md:text-[30px] medium text-[#141414]'>Class Attendance</h1>
                                 <div className='bg-[#183DA7] rounded-md py-[8px] px-[16px] md:flex space-x-[8px] cursor-pointer hidden' onClick={() => {
@@ -74,10 +104,10 @@ const Index = () => {
                                 </div>
 
 
-                             
+
 
                             </div>
-                            <AttendanceGrid />
+                            {attendance.length > 0 && (<AttendanceGrid session={Session} attendance={attendance} />)}
                         </div></>
                 }
             </main>
