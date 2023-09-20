@@ -22,12 +22,24 @@ const ScanModal = ({ qrCode }) => {
         }
     }, [])
 
-    console.log(qrCode, user)
+    // console.log(qrCode.text, user)
 
 
 
-    const signAttendance = () => {
+    const signAttendance = async () => {
+        setBtnLoad(true)
 
+        await axios.post("https://attendx-2hi6.onrender.com/session/sign-qrCode", {
+            "qrCode":qrCode.text,
+            "full_name":user.full_name,
+            "matric_number":user.identity_number
+        }).then((res)=> {
+            console.log(res)                                                
+            setBtnLoad(false)
+            window.location.href="/students/"
+        }).catch((err)=> {
+            console.log(err)
+        })                
     }
 
 
@@ -39,12 +51,12 @@ const ScanModal = ({ qrCode }) => {
 
         <div className='h-screen flex items-center justify-center bg-black px-[20px] '>
             <div className='bg-white  rounded-md md:w-[451px] md:h-[316px] flex flex-col space-y-[32px] py-[20px] px-[28px] mx-auto justify-center items-center'>
-                <Image src={icon} width={40} height={40} alt="icon" className='mx-auto' />
+                {/* <Image src={icon} width={40} height={40} alt="icon" className='mx-auto' /> */}
                 <div className=' flex flex-col space-y-[8px] '>                   
                    {user && (
-                    <div>
+                    <div>                        
                         <h1>Name: {user.full_name} </h1>
-                        <h1>Matric Number: {user.matric_number} </h1>                        
+                        <h1>Matric Number: {user.identity_number} </h1>                        
                     </div>
                    )}
                 </div>
@@ -54,7 +66,7 @@ const ScanModal = ({ qrCode }) => {
                         setOpen(false)
                     }}> Cancel </div>
 
-                    <div className={`w-[150px] h-[40px]  cursor-pointer  text-white  flex items-center justify-center text-center rounded-md leading-[24px]  ${color}`}
+                    <div className={`w-[150px] h-[40px]  cursor-pointer  text-white  flex items-center justify-center text-center rounded-md leading-[24px] bg-[#183DA7] `}
                         onClick={() => {
                             signAttendance()
                         }}

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import StudentHeader from '../../components/StudentHeader'
 import Image from 'next/image'
 // import QrReader from 'react-qr-scanner'
@@ -8,27 +8,37 @@ import Scan from '../../components/Scan'
 import { QrReader } from 'react-qr-reader';
 
 const Index = () => {
-    const [data, setData] = useState('No result');
-    const [scanResultFile, setScanResultFile] = useState('');
+    const [user, setUser] = useState()
+    const [courses, setCourses] = useState()
     const [scan, setScan] = useState(false);
     const qrRef = useRef(null)
 
 
-    const scanCode = () => {
-        setScan(true)
+    useEffect(() => {
+        const user = JSON.parse(window.localStorage.getItem("user"))
+        if (user) {
+            console.log(user)
+            setUser(user)
+        }
+    }, [])
+
+    useEffect(() => {
+        
+        if(user){
+            setCourses(user.courses)
+        }
+                    
+    }, [user])
+
+    useEffect(()=> {
+        console.log(courses)
+    }, [courses])
+
+    const getSession = async () => {
+
+
     }
 
-    const onScanFile = () => {
-        qrRef.current.openImageDialog();
-    }
-    const handleErrorFile = (error) => {
-        console.log(error);
-    }
-    const handleScanFile = (result) => {
-        if (result) {
-            setScanResultFile(result);
-        }
-    }
 
     return (
         <div className='w-full'>
