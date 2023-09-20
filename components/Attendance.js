@@ -64,12 +64,12 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
         const tie = new Date(parseInt(time))
         const mins = tie.getMinutes()
         console.log(mins.toLocaleString().length)
-        if(mins.toLocaleString().length === 1 ){
+        if (mins.toLocaleString().length === 1) {
             return `0${mins}`
-        }else{
+        } else {
             return mins
         }
-        
+
     }
 
     return (
@@ -94,8 +94,8 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                             <span>{getDay(Attendance.timeStamp)}</span>,
                                             <span>{getYear(Attendance.timeStamp)}</span>
                                         </td>
-                                        <td className='text-[14px] md:text-[16px]'>    
-                                          <span>{getHour(Attendance.timeStamp)}:</span>
+                                        <td className='text-[14px] md:text-[16px]'>
+                                            <span>{getHour(Attendance.timeStamp)}:</span>
                                             <span>{getMins(Attendance.timeStamp)}</span></td>
                                         <td className='' onClick={() => {
                                             router.push("/admin/Attendance/1")
@@ -118,6 +118,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                 pathname: "/admin/Attendance/Report",
                                 query: data
                             }}
+                            className='hidden md:block'
                         >
                             <div className='w-[150px] mt-[32px]'>
                                 <Button text="Generate Report" />
@@ -133,9 +134,13 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
 
                         <div className='flex justify-between items-center border-[0.5px] border-transparent border-t-[#D9D9D9] pt-[8px]' key={i}>
                             <div className='flex flex-col gap-y-2 text-black' >
-                                <h1 className='text-[14px] text-[#000]'> {Attendance.name} </h1>
-                                <h1 className='text-[14px] text-[#505050]'> {Attendance.date} </h1>
-                                <h1 className='text-[14px] text-[#505050]'> {Attendance.time} </h1>
+                                <h1 className='text-[14px] text-[#000]'> {Attendance.course_title} </h1>
+                                <h1 className='text-[14px] text-[#505050]'> <span>               {getMonth(Attendance.timeStamp)}</span>{" "}
+                                    <span>{getDay(Attendance.timeStamp)}</span>,
+                                    <span>{getYear(Attendance.timeStamp)}</span>
+                                </h1>
+                                <h1 className='text-[14px] text-[#505050]'>     <span>{getHour(Attendance.timeStamp)}:</span>
+                                    <span>{getMins(Attendance.timeStamp)}</span> </h1>
 
                             </div>
 
@@ -149,9 +154,21 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                             </div>
                         </div>
                     ))}
+
+                    <Link
+                        href={{
+                            pathname: "/admin/Attendance/Report",
+                            query: data
+                        }}
+                    >
+                        <div className='w-[150px] mt-[32px]'>
+                            <Button text="Generate Report" />
+
+                        </div>
+                    </Link>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
