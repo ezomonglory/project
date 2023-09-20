@@ -37,7 +37,7 @@ const Home = () => {
 
 
     const qrcode = async () => {
-        await axios.get(`https://attendx-2hi6.onrender.com/course/${selectedCourse.id}`).then( async (res) => {
+        await axios.get(`https://attendx-2hi6.onrender.com/course/${selectedCourse.id}`).then(async (res) => {
             const course = res.data[0]
 
             console.log(course)
@@ -50,7 +50,7 @@ const Home = () => {
                 course_title: course.course_title
             }
 
-            console.log(data)   
+            console.log(data)
 
             await axios.post("https://attendx-2hi6.onrender.com/session/generate-qrCode", data).then((res) => {
                 console.log(res)
@@ -85,8 +85,8 @@ const Home = () => {
         setSelectedCourse(courses[0])
     }, [courses])
 
-    useEffect(() => {               
-        if(selectedCourse){
+    useEffect(() => {
+        if (selectedCourse) {
             getSession(selectedCourse?.id)
         }
     }, [selectedCourse])
@@ -160,15 +160,27 @@ const Home = () => {
 
 
                             <div className='block md:hidden' >
-                                <select ref={selectRef} className='w-[95px] bg-transparent outline-none border-transparent p-2 text-[14px]' onClick={() => {
-
+                                <select ref={selectRef} className='w-[95px] bg-transparent outline-none border-transparent p-2 text-[14px]' 
+                                onClick={() => {
+                                    console.log("clli")
                                     courses.forEach((course, i) => {
                                         if (Number(selectRef.current.value) === i) {
                                             setSelectedCourse(course)
                                         }
                                     })
 
-                                }} >
+
+
+                                }}
+                                    // onchange={() => {
+                                    //     console.log("channfe")
+                                    //     courses.forEach((course, i) => {
+                                    //         if (Number(selectRef.current.value) === i) {
+                                    //             setSelectedCourse(course)
+                                    //         }
+                                    //     })
+                                    // }}
+                                >
                                     {courses.map((course, i) => {
 
                                         return (
