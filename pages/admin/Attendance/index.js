@@ -1,27 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react'
 import DashboardLayout from '../../../components/DashboardLayout'
 import Head from 'next/head'
-
 import { Courses } from '../../../data'
+import { BounceLoader } from 'react-spinners'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Button from '../../../components/Button'
 import Attendance from '../../../components/Attendance'
 var QRCode = require('qrcode')
 import Course from '../Course'
+import axios from 'axios'
 
 const Home = () => {
     const Router = useRouter()
     const selectRef = useRef()
+    const [load, setLoad] = useState(true)
+    const [qrload, setQrLoad] = useState(true)
     const [selectedCourse, setSelectedCourse] = useState()
+    const [courses, setCourses] = useState([])
+    const [err, setErr] = useState(false)
+    const [selectedStudent, setSelectedStudent] = useState()
     const [openModal, setOpenModal] = useState(false)
     const [qrImage, setQrImage] = useState(false)
 
 
     useEffect(() => {
-        setSelectedCourse(Courses[0])
         document.addEventListener("click", (e) => {
-            console.log(e.target.closest(".modelBackground"))
             if (e.target.closest(".newqrcode") || e.target.closest(".modelBackground")) {
                 setOpenModal(true)
             } else {
@@ -32,12 +36,78 @@ const Home = () => {
     }, [openModal])
 
 
-    const qrcode = () => {
-        console.log("called")
-        QRCode.toDataURL('Ezomon Glory', function (err, url) {
-            console.log(url)
-            setQrImage(url)
+    const qrcode = async () => {
+        await axios.get(`https://attendx-2hi6.onrender.com/course/${selectedCourse.id}`).then( async (res) => {
+            const course = res.data[0]
+
+            console.log(course)
+
+            const data = {
+                course_id: course._id,
+                lecturer_id: JSON.parse(window.localStorage.getItem("user")).identity_number,
+                lecturer_name: JSON.parse(window.localStorage.getItem("user")).full_name,
+                course_code: course.course_code,
+                course_title: course.course_title
+            }
+
+            console.log(data)   
+
+            await axios.post("https://attendx-2hi6.onrender.com/session/generate-qrCode", data).then((res) => {
+                console.log(res)
+                console.log("gotten here")
+                console.log(res.data.qrCode)
+                QRCode.toDataURL(res.data.qrCode, function (err, url) {
+                    console.log(url)
+                    setQrImage(url)
+                    setQrLoad(false)
+                })
+            })
+
+
+        }).catch((err) => {
+            setErr(true)
+            console.log(err)
         })
+
+
+    }
+
+    useEffect(() => {
+        const user = JSON.parse(window.localStorage.getItem("user"))
+        if (user) {
+            setCourses(user.courses)
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log("Courses")
+        console.log(courses)
+        setSelectedCourse(courses[0])
+    }, [courses])
+
+    useEffect(() => {               
+        if(selectedCourse){
+            getSession(selectedCourse?.id)
+        }
+    }, [selectedCourse])
+
+    const getSession = async (id) => {
+        setLoad(true)
+
+        await axios.get(`https://attendx-2hi6.onrender.com/session/get-session/${id}`).then((res) => {
+            console.log("Course complete")
+            setLoad(false)
+            setErr(false)
+            console.log(res.data)
+            setSelectedStudent(res.data)
+        }).catch((err) => {
+            console.log("Course error")
+            setErr(true)
+            setLoad(false)
+            console.log(err)
+        })
+
+
     }
 
 
@@ -50,39 +120,41 @@ const Home = () => {
             </Head>
 
             <main className="">
-                {openModal ? (
-                    <div className='h-screen  flex top-0 z-30  w-full items-center justify-center modalBackground'>
-                        <div className=' p-[32px] md:w-[440px] w-[90%]   z-50 bg-white flex flex-col items-center justify-center modelBackground' >
-                            <div className='items-center justify-center flex flex-col'>
-                                <Image src="/image/Scanner 3.svg" width={40} height={40} alt='scan' />
-                                <h1 className=' text-[#141414] text-[24px] mt-[10px] md:text-[30px] medium md:leading-[38px] '>New QR-CODE</h1>
-                                <h2 className=' text-[#9E9E9E] md:text-[14px] md:leading-[22px] md:font-[400] text-[12px] '>Track student attendance with this QR Code</h2>
-                            </div>
+                {openModal ?
+                    (
+                        <div className='h-screen  flex top-0 z-30  w-full items-center justify-center modalBackground'>
+                            <div className=' p-[32px] md:w-[440px] w-[90%]   z-50 bg-white flex flex-col items-center justify-center modelBackground' >
+                                {qrload ? <div className='flex items-center justify-center h-full w-full'>
+                                    <BounceLoader color="#183DA7" />
+                                </div> : <>
+                                    <div className='items-center justify-center flex flex-col'>
+                                        <Image src="/image/Scanner 3.svg" width={40} height={40} alt='scan' />
+                                        <h1 className=' text-[#141414] text-[24px] mt-[10px] md:text-[30px] medium md:leading-[38px] '>New QR-CODE</h1>
+                                        <h2 className=' text-[#9E9E9E] md:text-[14px] md:leading-[22px] md:font-[400] text-[12px] '>Track student attendance with this QR Code</h2>
+                                    </div>
 
-                            <Image src={qrImage} width={220} height={220} alt="Qr-code" className='hidden md:block' />
-                            <Image src={qrImage} width={220} height={220} alt="Qr-code" className="block md:hidden" />
+                                    <Image src={qrImage} width={220} height={220} alt="Qr-code" className='hidden md:block' />
+                                    <Image src={qrImage} width={220} height={220} alt="Qr-code" className="block md:hidden" />
 
 
-                            <div className='w-[80%] mx-auto'>
-                                <div className=' mt-[16px] w-full h-[40px] cursor-pointer flex items-center justify-center bg-[#183DA7] text-[#fff] border-[0.5px] border-[#E2EAFE]  py-[12px] px-[16px] text-center rounded-md leading-[24px] ' > Share </div>
+                                    <div className='w-[80%] mx-auto'>
+                                        <div className=' mt-[16px] w-full h-[40px] cursor-pointer flex items-center justify-center bg-[#183DA7] text-[#fff] border-[0.5px] border-[#E2EAFE]  py-[12px] px-[16px] text-center rounded-md leading-[24px] ' > Share </div>
 
-                                <div className=' mt-[16px] w-full h-[40px] cursor-pointer flex items-center justify-center bg-[#FFF] text-[#183DA7] border-[0.5px] border-[#E2EAFE]  py-[12px] px-[16px] text-center rounded-md leading-[24px] ' > Download </div>
+                                        <div className=' mt-[16px] w-full h-[40px] cursor-pointer flex items-center justify-center bg-[#FFF] text-[#183DA7] border-[0.5px] border-[#E2EAFE]  py-[12px] px-[16px] text-center rounded-md leading-[24px] ' > Download </div>
+                                    </div>
+                                </>}
                             </div>
                         </div>
-                    </div>
-                ) :
+                    )
+                    :
                     <DashboardLayout openModal={openModal}>
-
-
-
-
 
                         <div className=' h-screen'>
                             <div className='md:flex border-transparent border-[1px] border-b-[#D9D9D9]  w-full hidden'>
-                                {Courses.map((course, i) => (
-                                    <h1 className={`mr-[40px] cursor-pointer   ${selectedCourse?.name === course.name ? "text-[#183DA7] border-[0.5px] border-transparent border-b-[#183DA7] pb-[10px]  " : 'text-[#9E9E9E]  pb-[10px] '} `} key={i} onClick={() => {
+                                {courses.map((course, i) => (
+                                    <h1 className={`mr-[40px] cursor-pointer   ${selectedCourse?.code === course.code ? "text-[#183DA7] border-[0.5px] border-transparent border-b-[#183DA7] pb-[10px]  " : 'text-[#9E9E9E]  pb-[10px] '} `} key={i} onClick={() => {
                                         setSelectedCourse(course)
-                                    }} >{course.name}</h1>
+                                    }} >{course.code}</h1>
                                 ))}
                             </div>
 
@@ -90,18 +162,18 @@ const Home = () => {
                             <div className='block md:hidden' >
                                 <select ref={selectRef} className='w-[95px] bg-transparent outline-none border-transparent p-2 text-[14px]' onClick={() => {
 
-                                    Courses.forEach((course, i) => {
+                                    courses.forEach((course, i) => {
                                         if (Number(selectRef.current.value) === i) {
                                             setSelectedCourse(course)
                                         }
                                     })
 
                                 }} >
-                                    {Courses.map((course, i) => {
+                                    {courses.map((course, i) => {
 
                                         return (
-                                            <option className='' key={course?.name} value={i}
-                                            >{course?.name}</option>
+                                            <option className='' key={course?.code} value={i}
+                                            >{course?.code}</option>
                                         )
                                     }
                                     )
@@ -112,6 +184,7 @@ const Home = () => {
                                 <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium '> Attendance </h1>
                                 <div className='hidden md:flex bg-[#183DA7] px-[16px] py-[8px]  space-x-[8px] text-white items-center rounded-md cursor-pointer text-[14px] newqrcode'
                                     onClick={() => {
+                                        setQrLoad(true)
                                         qrcode()
                                         setOpenModal(true)
                                     }}
@@ -120,11 +193,22 @@ const Home = () => {
                                 </div>
                             </div>
 
-                            {selectedCourse?.Attendance.length > 0 ? <Attendance setOpenModal={setOpenModal} setSelectedCourse={setSelectedCourse} openModal={openModal} selectedCourse={selectedCourse} /> : <div className=' flex flex-col items-center justify-center mt-[5%] space-y-[24px] '>
-                                <Image src="/image/Attendance.svg" width={245} height={220} alt="ll" />
-                                <p className='text-center'>Hello Glory, no attendance have been <br />
-                                    generated for this course.</p>
-                            </div>}
+                            {selectedStudent?.length > 0 ? <Attendance load={load} setLoad={setLoad} setOpenModal={setOpenModal} setSelectedCourse={setSelectedCourse} openModal={openModal} selectedStudent={selectedStudent} /> :
+                                load ? <div className='flex items-center justify-center h-[60vh] w-full'>
+                                    <BounceLoader color="#183DA7" />
+                                </div> :
+                                    err ? <div className=' flex flex-col items-center justify-center mt-[5%] space-y-[24px] '>   <Image src="/image/Attendance.svg" width={245} height={220} alt="ll" />  <p className='text-[#505050] font-[500] text-center '>
+                                        An error occured please check if you are connected <br /> to the internet and try again</p> </div> :
+                                        <div className=' flex flex-col items-center justify-center mt-[5%] space-y-[24px] '>
+                                            <Image src="/image/Attendance.svg" width={245} height={220} alt="ll" />
+                                            <p className='text-center'>Hello , no attendance have been <br />
+                                                generated for this course.</p>
+                                        </div>
+                            }
+
+
+
+
 
                         </div>
 
@@ -142,7 +226,7 @@ const Home = () => {
                 }
             </main>
 
-        </div>
+        </div >
     )
 }
 

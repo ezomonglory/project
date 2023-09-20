@@ -1,86 +1,102 @@
 import Head from 'next/head'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import DashboardLayout from '../../components/DashboardLayout'
 import Button from '../../components/Button';
 import CourseModal from '../../components/CourseModal';
+import axios from 'axios';
 
 const AddCourse = () => {
 
+
     const [open, setOpen] = useState(false)
+    const [check, setCheck] = useState(false)
+    const [checkBoxList, setCheckBoxList] = useState([])
 
-    const Attendance = [
-        {
-            serialNumber: 1,
-            courseCode: 'CS101',
-            courseTitle: 'Introduction to Computer Science',
-            credit: "3 Credit",
-            semester: "1st Sem."
+    const checkRef = useRef()
 
-        },
-        {
-            serialNumber: 2,
-            courseCode: 'ENG202',
-            courseTitle: 'Advanced English Composition',
-            credit: "4 Credit",
-            semester: "1st Sem."
-        },
-        {
-            serialNumber: 3,
-            courseCode: 'MAT150',
-            courseTitle: 'Calculus I',
-            credit: "5 Credit",
-            semester: "1st Sem."
-        },
-        {
-            serialNumber: 4,
-            courseCode: 'PHY110',
-            courseTitle: 'Physics for Engineers',
-            credit: "4 Credit",
-            semester: "1st Sem."
-        },
-        {
-            serialNumber: 5,
-            courseCode: 'HIS220',
-            courseTitle: 'World History: 20th Century',
-            credit: "3 Credit",
-            semester: "1st Sem."
-        },
-        {
-            serialNumber: 6,
-            courseCode: 'BIO101',
-            courseTitle: 'Introduction to Biology',
-            credit: "4 Credit",
-            semester: "1st Sem."
-        },
-        // {
-        //     serialNumber: 7,
-        //     courseCode: 'CHEM120',
-        //     courseTitle: 'General Chemistry',
-        //     credit: "5 Credit" ,
-        //     semester: "1st Sem."
-        // },
-        // {
-        //     serialNumber: 8,
-        //     courseCode: 'PSY201',
-        //     courseTitle: 'Introduction to Psychology',
-        //     credit: "3 Credit" ,
-        //     semester: "1st Sem."
-        // },
-        // {
-        //     serialNumber: 9,
-        //     courseCode: 'ART110',
-        //     courseTitle: 'Introduction to Art and Design',
-        //     credit: "3 Credit" ,
-        //     semester: "1st Sem."
-        // },
-        // {
-        //     serialNumber: 10,
-        //     courseCode: 'ECON301',
-        //     courseTitle: 'Microeconomics',
-        //     credit: "4 Credit" ,
-        //     semester: "1st Sem."
-        // }
-    ];
+    const [load, setLoad] = useState(false)
+    const [selectedCourse, setSelectedCourse] = useState()
+    const [User, setUser] = useState()
+    // const [selectedStudent, setSelectedStudent] = useState()
+    const [Attendance, setAttendance] = useState([])
+    const [err, setErr] = useState()
+    const selectRef = useRef(null)
+
+
+    useEffect(() => {
+        const user = JSON.parse(window.localStorage.getItem("user"))
+        if (user) {
+            setUser(user)
+        }
+    }, [])
+
+    // useEffect(() => {
+    //     console.log(courses)
+    //     setSelectedCourse(courses[0])
+    // }, [User])
+
+    useEffect(() => {
+        getCourse()
+    }, [])
+
+
+
+
+    useEffect(() => {
+        updateArray()
+    }, [Attendance])
+
+
+
+
+    useEffect(() => {
+       if(checkBoxList){
+        const Arr = Array.from(checkBoxList)
+        console.log(checkBoxList)
+        console.log(Arr)
+        Arr?.forEach((box)=> {
+            if(box){
+                console.log(box)
+            }
+        })  
+       }
+    }, [checkBoxList])
+
+    const updateArray = () => {
+        Attendance.forEach((attend) => {
+            setCheckBoxList((prev) => ({ ...prev, [attend._id]: false }))
+        })
+    }
+
+    const handleChange = (e) => {
+        const { id, checked } = e.target;
+        setCheckBoxList((prevState) => ({
+            ...prevState,
+            [id]: checked,
+        }));
+
+    }
+
+    const getCourse = async (course) => {
+        console.log("Course called")
+        setLoad(true)
+        await axios.get(`https://attendx-2hi6.onrender.com/course/all-courses`).then((res) => {
+            console.log("Course complete")
+            setLoad(false)
+            setErr(false)
+            setAttendance(res.data)
+            console.log(res.data)            
+        }).catch((err) => {
+            console.log("Course error")
+            setErr(true)
+            setLoad(false)
+            console.log("error")
+            console.log(err)
+        })
+
+    }
+
+   
 
 
 
@@ -95,7 +111,7 @@ const AddCourse = () => {
             <main>
 
 
-                {open ? <CourseModal text="update" texting="updating" setOpen={setOpen} color="bg-[#183DA7]" icon="image/Notebook.svg" /> :
+                {open ? <CourseModal text="update" texting="updating" user={User} Attendance={checkBoxList} setOpen={setOpen} color="bg-[#183DA7]" icon="image/Notebook.svg" /> :
 
                     <DashboardLayout>
 
@@ -120,13 +136,21 @@ const AddCourse = () => {
 
 
                                     <tbody >
-                                        {Attendance.map((Attendance, index) => (
+                                        {Attendance?.map((Attendance, index) => (
                                             <tr key={index} className=''>
-                                                <td className='text-[14px] md:text-[16px]'><input type='checkbox' /></td>
-                                                <td className='text-[14px] md:text-[16px]'>{Attendance.semester}</td>
-                                                <td className='text-[14px] md:text-[16px]'>{Attendance.courseCode}</td>
-                                                <td className='text-[14px] md:text-[16px]'>{Attendance.courseTitle}</td>
-                                                <td className='text-[14px] md:text-[16px]'>{Attendance.credit}</td>
+                                                <td className='text-[14px] md:text-[16px]'>
+                                                    <input type='checkbox' ref={checkRef}
+                                                        id={Attendance._id}
+                                                        checked={checkBoxList[Attendance._id]}
+                                                        onChange={(e) => { handleChange(e) }}
+                                                    // onClick={() => {
+                                                    //     checkChecked()
+                                                    // }}
+                                                    /></td>
+                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_semester}</td>
+                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_code}</td>
+                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_title}</td>
+                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_credit}</td>
 
                                             </tr>
                                         ))}
@@ -141,6 +165,7 @@ const AddCourse = () => {
 
                             <div className='w-[150px] mt-[32px]' onClick={() => {
                                 setOpen(true)
+
                             }}>
                                 <Button text="Update Course" />
                             </div>

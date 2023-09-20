@@ -5,11 +5,9 @@ import { useRouter } from "next/router"
 
 
 const SidebarBtn = ({text, icon, href}) => {
-    const router = useRouter()
-    console.log(icon)    
+    const router = useRouter()    
     const img = "/image/User Id.svg"
-    const image = icon
-    console.log(image)
+    const image = icon    
 
     return(
         <div className="flex space-x-[16px] py-[8px] items-center" current-link={router.pathname === href ? "page" : "null"} >

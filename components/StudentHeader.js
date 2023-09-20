@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import Navlink from './Navlink'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 const StudentHeader = () => {
 
@@ -23,7 +23,11 @@ const StudentHeader = () => {
                 </div>
             </div>
 
-            <div className='border-[0.5px] border-[#183DA7] rounded-lg text-[#9E9E9E] py-[2px] px-[16px] '>
+            <div className='border-[0.5px] cursor-pointer border-[#183DA7] rounded-lg text-[#9E9E9E] py-[2px] px-[16px] '
+            onClick={()=> {
+                router.push("/SignIn")
+            }}
+            >
                 Logout
             </div>
         </div>

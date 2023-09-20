@@ -6,12 +6,43 @@ import { useEffect, useRef, useState } from 'react'
 import { Courses } from "../../data"
 import StudentCourse from '../../components/StudentCourse'
 import StudentNoCourse from '../../components/StudentNoCourse'
+import axios from 'axios'
 
 
 export default function Home() {
-    
-    console.log(Courses)
-   
+    const [staffID, setStaffID] = useState("")
+    const [courses, setCourses] = useState([])
+    const [selectedCourse, setSelectedCourse] = useState([])
+
+
+
+    // useEffect(() => {
+    //     const user = JSON.parse(window.localStorage.getItem("user"))
+    //     setCourses(user.courses)
+    //     if (courses.length > 1) {
+    //         console.log(courses)
+    //     }
+    // }, [])
+
+    useEffect(() => {
+        const user = JSON.parse(window.localStorage.getItem("user"))
+        console.log(user)
+        if (user) {
+            setCourses(user.courses)
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log("Courses")
+        console.log(courses)
+        if (courses) {
+            setSelectedCourse(courses[0])
+        }
+    }, [courses])
+
+
+
+
 
 
     return (
@@ -24,7 +55,7 @@ export default function Home() {
 
             <main className="w-full h-screen">
                 <DashboardLayout>
-                    {Courses.length > 1 ? <StudentCourse /> :  <StudentNoCourse /> }
+                    {courses?.length >=1 ? <StudentCourse /> : <StudentNoCourse />}
                 </DashboardLayout>
             </main>
 

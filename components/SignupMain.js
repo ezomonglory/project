@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import React, { useEffect, useRef, useState } from "react"
+import ClipLoader from "react-spinners/ClipLoader";
 import Button from "./Button"
 import InputField from "./InputField"
-import { Router, useRouter } from "next/router"
+import { Router, useRouter } from "next/navigation"
 import axios from "axios"
 
 
@@ -10,6 +11,7 @@ import axios from "axios"
 const SignUpMain = () => {
     const [student, setStudent] = useState(false)
     const [role, setRole] = useState("")
+    const [load, setLoad] = useState(false)
     const nameRef = useRef(null)
     const matRef = useRef(null)
     const passwordRef = useRef(null)
@@ -21,7 +23,7 @@ const SignUpMain = () => {
 
     }, [student])
 
-    useEffect(() => {
+    useEffect(() => {        
         setRole("Teacher")
     }, [])
 
@@ -59,23 +61,38 @@ const SignUpMain = () => {
                     <InputField label={"Password"} type="text" ref={passwordRef} />
                 </div>
             </div>
+        
 
             <div>
-                <div onClick={() => {
+                <div
+                    onClick={
+                        load ? () => { } :
+                            () => {
+                                setLoad(true)
+                                const data = {
+                                    full_name: nameRef?.current.value,
+                                    identity_number: matRef?.current.value,
+                                    password: passwordRef?.current.value,
+                                    role: role,
+                                }
+                                console.log(data)
+                                try {
+                                    const res = axios.post("https://attendx-2hi6.onrender.com/auth/register", data)
+                                    res.then(() => {
+                                        router.push("/SignIn")
+                                        setLoad(false)
+                                    }).catch((err) => {
+                                        setLoad(false)
+                                        console.log(err)
+                                    })
+                                } catch (error) {
+                                    setLoad(false)
+                                    console.log(error)
+                                }
+                            }
+                    }>
 
-                    const data = {
-                        full_name: nameRef?.current.value,
-                        identity_number: matRef?.current.value,
-                        password: passwordRef?.current.value,
-                        role: role,
-                    }                    
-                    try {
-                        axios.post("https://attendx-2hi6.onrender.com/auth/register", data)
-                    } catch (error) {
-                        console.log(error)
-                    }
-                }}>
-                    <Button text="Create Account" />
+                    <Button text={load ? <ClipLoader color="white" size={18} /> : "Create Account"} />
                 </div>
                 <div className="md:hidden text-center mt-[10px] medium">
                     <h2>Have an account? <a href="/SignIn" className="text-[#183DA7]">Login</a></h2>

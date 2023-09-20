@@ -1,90 +1,77 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DashboardLayout from '../../components/DashboardLayout'
-import { Courses } from '../../data'
 import { useRouter } from 'next/router'
 import CourseModal from '../../components/CourseModal'
+import axios from 'axios'
+import { BounceLoader } from 'react-spinners'
+import StudentNoCourse from '../../components/StudentNoCourse'
 
 
 const Course = () => {
 
     const Router = useRouter()
     const [open, setOpen] = useState(false)
+    const [load, setLoad] = useState(false)
+    const [ID, setID] = useState()
+    const [user, setUser] = useState()
+    const [err, setErr] = useState(false)
+    const [called, setCalled] = useState(false)
+    const [Attendance, setAttendance] = useState([])
 
-    const Attendance = [
-        {
-            serialNumber: 1,
-            courseCode: 'CS101',
-            courseTitle: 'Introduction to Computer Science',
-            credit: "3 Credit",
-            semester: "1st Sem."
+    useEffect(() => {
+        const user = JSON.parse(window.localStorage.getItem("user"))
+        if (user) {
+            console.log(user)
+            setUser(user)
+        }
+    }, [])
 
-        },
-        {
-            serialNumber: 2,
-            courseCode: 'ENG202',
-            courseTitle: 'Advanced English Composition',
-            credit: "4 Credit",
-            semester: "1st Sem."
-        },
-        {
-            serialNumber: 3,
-            courseCode: 'MAT150',
-            courseTitle: 'Calculus I',
-            credit: "5 Credit",
-            semester: "1st Sem."
-        },
-        {
-            serialNumber: 4,
-            courseCode: 'PHY110',
-            courseTitle: 'Physics for Engineers',
-            credit: "4 Credit",
-            semester: "1st Sem."
-        },
-        {
-            serialNumber: 5,
-            courseCode: 'HIS220',
-            courseTitle: 'World History: 20th Century',
-            credit: "3 Credit",
-            semester: "1st Sem."
-        },
-        {
-            serialNumber: 6,
-            courseCode: 'BIO101',
-            courseTitle: 'Introduction to Biology',
-            credit: "4 Credit",
-            semester: "1st Sem."
-        },
-        // {
-        //     serialNumber: 7,
-        //     courseCode: 'CHEM120',
-        //     courseTitle: 'General Chemistry',
-        //     credit: "5 Credit" ,
-        //     semester: "1st Sem."
-        // },
-        // {
-        //     serialNumber: 8,
-        //     courseCode: 'PSY201',
-        //     courseTitle: 'Introduction to Psychology',
-        //     credit: "3 Credit" ,
-        //     semester: "1st Sem."
-        // },
-        // {
-        //     serialNumber: 9,
-        //     courseCode: 'ART110',
-        //     courseTitle: 'Introduction to Art and Design',
-        //     credit: "3 Credit" ,
-        //     semester: "1st Sem."
-        // },
-        // {
-        //     serialNumber: 10,
-        //     courseCode: 'ECON301',
-        //     courseTitle: 'Microeconomics',
-        //     credit: "4 Credit" ,
-        //     semester: "1st Sem."
-        // }
-    ];
+    useEffect(() => {
+
+        if (!called) {
+            console.log("calling")
+            getCourses()
+        }
+    }, [user])
+
+
+    useEffect(() => {
+        console.log("atten")
+        console.log(Attendance.length)
+        setLoad(false)
+    }, [Attendance])
+
+
+    const getCourses = async () => {
+        setLoad(true)
+        await axios.get("https://attendx-2hi6.onrender.com/course/all-courses").then((res) => {
+            console.log(res.data)
+            setLoad(false)
+            res.data.forEach(course => {
+                course.lecturers.forEach((lecturer) => {
+                    if (user?.identity_number === lecturer.staff_id) {
+                        console.log(course)
+                        setCalled(!called)
+                        setErr(false)
+                        console.log("Called")
+                        Attendance.push(course)
+                        // setAttendance(...Attendance, course)
+                        // setLoad(false)
+                    }
+
+
+                })
+            });            
+            if (Attendance.length === 0) {
+                setLoad(false)
+            }
+        }).catch((Err) => {
+            setLoad(false)
+            setErr(true)
+        })
+    }
 
 
 
@@ -101,7 +88,7 @@ const Course = () => {
 
             <main>
 
-                {open ? <CourseModal text="delete" texting="removal" color="bg-red-600" setOpen={setOpen} icon="/image/Danger Circle.svg" /> :
+                {open ? <CourseModal ID={ID} setLoad={setLoad} user={user} Attendance={Attendance} setAttendance={setAttendance} text="delete" texting="removal" color="bg-red-600" setOpen={setOpen} icon="/image/Danger Circle.svg" /> :
                     <DashboardLayout>
                         <div className='pb-[16px] md:pb-[32px] flex justify-between items-center mt-[32px] md:mt-0'>
                             <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium '> Courses </h1>
@@ -116,7 +103,10 @@ const Course = () => {
 
 
                         <div className='w-full h-[80vh] bg-transparent  md:bg-white overflow-scroll scroll-hidden overflow-x-scroll scroll-hidden'>
-                            <table className='w-[900px] bg-transparent'>
+                            {err ? <div>  <Image src="/image/Teacher.svg" className='hidden md:block' width={430} height={300} alt="teacher" /> <Image src="/image/Teacher.svg" className='block md:hidden' width={330} height={250} alt="teacher" />  <p className='text-[#505050] font-[500] text-center '>
+                                An error occured please check if you are connected <br /> to the internet and try again</p> </div> : load ? <div className='flex items-center justify-center h-full w-full'>
+                                    < BounceLoader color="#183DA7" />
+                                </div> : <table className='w-[900px] bg-transparent'>
                                 <thead className='bg-gray-200 md:bg-white w-full'>
                                     <tr>
                                         <td className='text-[14px] md:text-[16px]'>#</td>
@@ -131,15 +121,16 @@ const Course = () => {
 
 
                                 <tbody >
-                                    {Attendance.map((Attendance, index) => (
+                                    {Attendance?.length >= 1 && (Attendance?.map((Attendance, index) => (
                                         <tr key={index} className=''>
-                                            <td className='text-[14px] md:text-[16px]'>{Attendance.serialNumber}</td>
-                                            <td className='text-[14px] md:text-[16px]'>{Attendance.semester}</td>
-                                            <td className='text-[14px] md:text-[16px]'>{Attendance.courseCode}</td>
-                                            <td className='text-[14px] md:text-[16px]'>{Attendance.courseTitle}</td>
-                                            <td className='text-[14px] md:text-[16px]'>{Attendance.credit}</td>
+                                            <td className='text-[14px] md:text-[16px]'>{index + 1}</td>
+                                            <td className='text-[14px] md:text-[16px]'>{Attendance.course_semester}</td>
+                                            <td className='text-[14px] md:text-[16px]'>{Attendance.course_code}</td>
+                                            <td className='text-[14px] md:text-[16px]'>{Attendance.course_title}</td>
+                                            <td className='text-[14px] md:text-[16px]'>{Attendance.course_credit}</td>
                                             <td className=''>
                                                 <div className='text-[12px] md:text-[12px] px-[12px] py-[3px] text-[#C60000]  border-[0.5px] border-[#C60000] rounded-md cursor-pointer  inline-block' onClick={() => {
+                                                    setID(Attendance.course_code)
                                                     setOpen(true)
                                                 }} >
 
@@ -148,18 +139,16 @@ const Course = () => {
                                             </td>
 
                                         </tr>
-                                    ))}
+                                    )) )}
                                 </tbody>
-
-
                             </table>
-
+                            }
                         </div>
 
-                        <div className='fixed right-[20px] items-center justify-center flex bottom-[20%] bg-[#183DA7] rounded-full w-[48px] h-[48px] md:hidden' onClick={()=> {
+                        <div className='fixed right-[20px] items-center justify-center flex bottom-[20%] bg-[#183DA7] rounded-full w-[48px] h-[48px] md:hidden' onClick={() => {
                             Router.push("/admin/AddCourse")
                         }}>
-                            <Image src="/image/Frame.svg" alt="plus" width={24} height={24} />           
+                            <Image src="/image/Frame.svg" alt="plus" width={24} height={24} />
                         </div>
 
                     </DashboardLayout>

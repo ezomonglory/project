@@ -1,15 +1,26 @@
 import Image from "next/image"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import SidebarBtn from "./SidebarBtn"
 import Navlink from "./Navlink"
+import { useRouter } from "next/navigation"
 
-const Sidebar = ({setOpenModal}) => {
+const Sidebar = ({ setOpenModal }) => {
+    const router = useRouter()
+    const [name, setName] = useState("")
+
+    useEffect(() => {
+
+        const data = JSON.parse(localStorage.getItem("user"))
+        if (data) {
+            setName(data.full_name)            
+        }
+    }, [])
 
     return (
         <div className=" bg-white  flex flex-col space-y-[36px] relative w-full  md:w-[250px] xl:w-[300px] h-full px-[24px] py-[48px] " >
             <div className="flex justify-between items-center">
                 <Image src="/image/new logo 1.png" alt="logo" width={114} height={32} />
-                <div className="md:hidden" onClick={()=> {
+                <div className="md:hidden" onClick={() => {
                     setOpenModal(false)
                 }}>
                     <Image src="/image/Xicon.svg" width={20} height={20} alt="x" />
@@ -34,10 +45,14 @@ const Sidebar = ({setOpenModal}) => {
                 <div className="flex space-x-[16px] pl-[8px] cursor-pointer">
                     <div className="bg-gray-600 w-[20px] h-[20px] rounded-full">
                     </div>
-                    <h2 className="medium">Ezomon GLory</h2>
+                    <h2 className="medium uppercase">{name}</h2>
                 </div>
 
-                <div className="cursor-pointer">
+                <div className="cursor-pointer"
+                    onClick={() => {
+                        router.push("/SignIn")
+                    }}
+                >
                     <SidebarBtn icon="/image/User Id.svg" text="Logout" />
                 </div>
 

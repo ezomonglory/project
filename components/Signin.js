@@ -1,13 +1,20 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
+import ClipLoader from "react-spinners/ClipLoader";
 import Button from "./Button"
 import InputField from "./InputField"
-import { useRouter } from "next/router"
+import { Router, useRouter } from "next/navigation"
+import axios from "axios"
 
 
 const Signin = () => {
     const [student, setStudent] = useState(false)
     const router = useRouter()
+    const matRef = useRef(null)
+    const [load, setLoad] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("")
+    const passwordRef = useRef(null)
+
 
 
     return (
@@ -26,26 +33,62 @@ const Signin = () => {
 
             <div className="flex space-y-[16px] flex-col">
                 <div className="space-y-[8px]  ">
-                    <InputField label={student ? "Matric No" : "Staff ID"} type="text" />
+                    <InputField label={student ? "Matric No" : "Staff ID"} type="text" ref={matRef} />
                 </div>
 
                 <div className="">
-                    <InputField label={"Password"} type="text" />
+                    <InputField label={"Password"} type="text" ref={passwordRef} />
                 </div>
             </div>
 
             <h1 className=' text-[#183DA7] medium '>Forgot Password ?</h1>
 
 
-            <div className="mt-[32px]" onClick={
-                ()=> {
-                    router.push("/admin/Student")
-                }
-            }>
-            <Button text="Sign in"  />
-            <div className="md:hidden text-center mt-[10px] medium">
-                    <h2>Dont have an account? <a href="/" className="text-[#183DA7]">Create Account</a></h2>
+            <div className="mt-[32px]">
+                <div
+                    className="mt-[32px]"
+                    onClick={
+                        load ? () => { } :
+                            async () => {
+                                setLoad(true)
+                                const data = {
+                                    identity_number: matRef?.current.value,
+                                    password: passwordRef?.current.value,
+                                }
+                                console.log(data)
+
+                                try {
+                                    const res = await axios.post("https://attendx-2hi6.onrender.com/auth/login", data);
+                                    console.log(res);
+
+                                    if (res.data) {
+                                        window.localStorage.setItem("user", JSON.stringify(res.data));
+                                        if (res.data.role === "teacher") {
+                                            router.push("/admin/Student");
+                                        } else if (res.data.role === "student") {
+                                            router.push("/students");
+                                        }
+                                    } else {
+                                        // Handle the case where the response data is missing or invalid
+                                        setErrorMessage("Invalid response from the server");
+                                    }
+
+                                    setLoad(false);
+                                } catch (error) {
+                                    // Handle any network or request-related errors
+                                    setLoad(false);
+                                    setErrorMessage("An error occured please ensure that your username and password is correct");
+                                    console.log(error);
+                                }
+                            }
+                    }>
+
+                    <Button text={load ? <ClipLoader color="white" size={18} /> : "Sign in"} />
+                    {errorMessage && (<p className=" text-red-500 text-center text-[14px] ">{errorMessage}</p>)}
                 </div>
+            </div>
+            <div className="md:hidden text-center mt-[10px] medium">
+                <h2>Dont have an account? <a href="/" className="text-[#183DA7]">Create Account</a></h2>
             </div>
         </div>
     )
