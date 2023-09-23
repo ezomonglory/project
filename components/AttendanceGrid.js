@@ -1,13 +1,13 @@
 import React from 'react'
 import AttendanceCard from './AttendanceCard'
 
-const AttendanceGrid = ({ attendance, session }) => {
+const AttendanceGrid = ({ attendance, session, course }) => {
 
-    const percentage = (attendance.length/session.length)*100    
+    const percentage = Math.round((attendance.length/session.length)*100    ) 
 
     return (
         <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-y-[24px] md:gap-x-[48px] md:gap-y-[32px]'>
-            {attendance.map((attend, index) => (
+            {course.map((attend, index) => (
                 <AttendanceCard key={index} course={attend.course_code} percentage={`${percentage}%`} />
             ))}
             {/* <AttendanceCard course="csc417" percentage="28%" />

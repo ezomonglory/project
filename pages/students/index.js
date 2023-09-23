@@ -14,6 +14,7 @@ const Index = () => {
     const [scan, setScan] = useState(false);
     const [attendance, setAttendance] = useState([])
     const [Session, setSession] = useState([])
+    const [course, setCourse] = useState([])
     const [called, setCalled] = useState(false)
     const qrRef = useRef(null)
 
@@ -45,16 +46,22 @@ const Index = () => {
         console.log("calllld")
         if (!called) {
             console.log(attendance)
+            console.log(course)
         }
+ 
 
     }, [called])
 
+    
     const getSession = async (id) => {
+        console.log("gesession called")
         await axios.get(`https://attendx-2hi6.onrender.com/session/get-session/${id}`).then((res) => {
             console.log(res)
             res.data.forEach((data) => {
                 Session.push(data)
-                // console.log(Session)
+                if(!course.includes({"course_code": data.course_code, "percentage":0})){
+                    course.push({"course_code": data.course_code, "percentage":0})
+                }
                 data.attendance.forEach((attend) => {
                     if (attend.matric_number === user.identity_number) {
                         if (!attendance.includes(data)) {
@@ -107,7 +114,7 @@ const Index = () => {
 
 
                             </div>
-                            {attendance.length > 0 && (<AttendanceGrid session={Session} attendance={attendance} />)}
+                            {attendance.length > 0 && (<AttendanceGrid session={Session} attendance={attendance} course={course} />)}
                         </div></>
                 }
             </main>

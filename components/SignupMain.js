@@ -28,7 +28,7 @@ const SignUpMain = () => {
     }, [])
 
     return (
-        <div className="space-y-[32px]">
+        <div className="space-y-[48px]">
 
             <div className="space-y-[16px] md:space-y-[24px]">
 
@@ -63,7 +63,7 @@ const SignUpMain = () => {
             </div>
         
 
-            <div>
+            <div className="">
                 <div
                     onClick={
                         load ? () => { } :
@@ -94,8 +94,8 @@ const SignUpMain = () => {
 
                     <Button text={load ? <ClipLoader color="white" size={18} /> : "Create Account"} />
                 </div>
-                <div className="md:hidden text-center mt-[10px] medium">
-                    <h2>Have an account? <a href="/SignIn" className="text-[#183DA7]">Login</a></h2>
+                <div className="md:hidden text-center mt-[16px] medium">
+                    <h2>Not new to AttendX? <a href="/SignIn" className="text-[#183DA7]">Sign in</a></h2>
                 </div>
             </div>
 
