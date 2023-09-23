@@ -29,14 +29,14 @@ const Sidebar = ({ setOpenModal }) => {
 
             <div className="flex flex-col space-y-[16px]  ">
                 <Navlink href="/admin/Student">
-                    <SidebarBtn icon="/image/User Id.svg" text="Student" href="/admin/Student" />
+                    <SidebarBtn icon="user Id.svg" text="Student" href="/admin/Student" />
 
                 </Navlink>
                 <Navlink href="/admin/Attendance">
-                    <SidebarBtn icon="/image/User Id.svg" text="Attendance" href="/admin/Attendance" />
+                    <SidebarBtn icon="User Check.svg" text="Attendance" href="/admin/Attendance" />
                 </Navlink>
                 <Navlink href="/admin/Course">
-                    <SidebarBtn icon="/image/Notebook.svg" text="Course Management" href="/admin/Course" />
+                    <SidebarBtn icon="Notebook.svg" text="Course Management" href="/admin/Course" />
                 </Navlink>
             </div>
 
@@ -53,7 +53,7 @@ const Sidebar = ({ setOpenModal }) => {
                         router.push("/SignIn")
                     }}
                 >
-                    <SidebarBtn icon="/image/User Id.svg" text="Logout" />
+                    <SidebarBtn icon="Logout 2.svg" text="Logout" />
                 </div>
 
             </div>

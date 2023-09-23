@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import axios from 'axios'
-import { BounceLoader } from 'react-spinners'
+import { FadeLoader } from 'react-spinners'
 
 
 const StudentCourse = () => {
@@ -67,7 +67,7 @@ console.log(selectedStudent)
 
             <div className='md:flex border-transparent border-[1px] border-b-[#D9D9D9]  w-full hidden'>
                 {courses?.map((course, i) => (
-                    <h1 className={`mr-[40px] cursor-pointer   ${selectedCourse?.code === course.code ? "text-[#183DA7] border-[0.5px] border-transparent border-b-[#183DA7] pb-[10px]  " : 'text-[#9E9E9E]  pb-[10px] '} `}
+                    <h1 className={`mr-[40px] cursor-pointer   ${selectedCourse?.code === course.code ? "text-[#183DA7] border-[3px] border-transparent border-b-[#183DA7] pb-[10px]  " : 'text-[#9E9E9E]  pb-[10px] '} `}
                         key={i} onClick={() => {
                             // getCourse(course.id)
                             setSelectedCourse(course)
@@ -106,15 +106,15 @@ console.log(selectedStudent)
 
                     <div className='w-full h-[70vh] bg-white overflow-scroll scroll-hidden'>
                         {load ? <div className='flex items-center justify-center h-full w-full'>
-                            <BounceLoader color="#183DA7" />
+                            <FadeLoader color="#183DA7" />
                         </div> :
 
                             <table>
                                 <thead>
                                     <tr>
-                                        <td className='text-[14px] md:text-[16px]'>#</td>
-                                        <td className='text-[14px] md:text-[16px]'>Full Name</td>
-                                        <td className='text-[14px] md:text-[16px]'>Matriculation No.</td>
+                                        <td className='text-[14px] text-[#949494] medium md:text-[16px]'>#</td>
+                                        <td className='text-[14px] text-[#949494] medium md:text-[16px]'>Full Name</td>
+                                        <td className='text-[14px] text-[#949494] medium md:text-[16px]'>Matriculation No.</td>
                                     </tr>
                                 </thead>
 
@@ -133,7 +133,7 @@ console.log(selectedStudent)
                 </>
                 :
                 load ? <div className='flex items-center justify-center h-full w-full'>
-                    < BounceLoader color="#183DA7" />
+                    < FadeLoader color="#183DA7" />
                 </div> :
 
                     <div className='flex w-full h-full items-center justify-center '>

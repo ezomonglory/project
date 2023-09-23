@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import DashboardLayout from '../../../components/DashboardLayout'
 import Head from 'next/head'
 import { Courses } from '../../../data'
-import { BounceLoader } from 'react-spinners'
+import { FadeLoader } from 'react-spinners'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Button from '../../../components/Button'
@@ -125,7 +125,7 @@ const Home = () => {
                         <div className='h-screen  flex top-0 z-30  w-full items-center justify-center modalBackground'>
                             <div className=' p-[32px] md:w-[440px] w-[90%]   z-50 bg-white flex flex-col items-center justify-center modelBackground' >
                                 {qrload ? <div className='flex items-center justify-center h-full w-full'>
-                                    <BounceLoader color="#183DA7" />
+                                    <FadeLoader color="#183DA7" />
                                 </div> : <>
                                     <div className='items-center justify-center flex flex-col'>
                                         <Image src="/image/Scanner 3.svg" width={40} height={40} alt='scan' />
@@ -207,7 +207,7 @@ const Home = () => {
 
                             {selectedStudent?.length > 0 ? <Attendance load={load} setLoad={setLoad} setOpenModal={setOpenModal} setSelectedCourse={setSelectedCourse} openModal={openModal} selectedStudent={selectedStudent} /> :
                                 load ? <div className='flex items-center justify-center h-[60vh] w-full'>
-                                    <BounceLoader color="#183DA7" />
+                                    <FadeLoader color="#183DA7" />
                                 </div> :
                                     err ? <div className=' flex flex-col items-center justify-center mt-[5%] space-y-[24px] '>   <Image src="/image/Attendance.svg" width={245} height={220} alt="ll" />  <p className='text-[#505050] font-[500] text-center '>
                                         An error occured please check if you are connected <br /> to the internet and try again</p> </div> :

@@ -5,7 +5,7 @@ import DashboardLayout from '../../components/DashboardLayout'
 import { useRouter } from 'next/router'
 import CourseModal from '../../components/CourseModal'
 import axios from 'axios'
-import { BounceLoader } from 'react-spinners'
+import { FadeLoader } from 'react-spinners'
 import StudentNoCourse from '../../components/StudentNoCourse'
 
 
@@ -105,7 +105,7 @@ const Course = () => {
                         <div className='w-full h-[80vh] bg-transparent  md:bg-white overflow-scroll scroll-hidden overflow-x-scroll scroll-hidden'>
                             {err ? <div>  <Image src="/image/Teacher.svg" className='hidden md:block' width={430} height={300} alt="teacher" /> <Image src="/image/Teacher.svg" className='block md:hidden' width={330} height={250} alt="teacher" />  <p className='text-[#505050] font-[500] text-center '>
                                 An error occured please check if you are connected <br /> to the internet and try again</p> </div> : load ? <div className='flex items-center justify-center h-full w-full'>
-                                    < BounceLoader color="#183DA7" />
+                                    < FadeLoader color="#183DA7" />
                                 </div> : <table className='w-[900px] bg-transparent'>
                                 <thead className='bg-gray-200 md:bg-white w-full'>
                                     <tr>
