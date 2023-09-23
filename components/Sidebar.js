@@ -36,7 +36,7 @@ const Sidebar = ({ setOpenModal }) => {
                     <SidebarBtn icon="user Check.svg" text="Attendance" href="/admin/Attendance" />
                 </Navlink>
                 <Navlink href="/admin/Course">
-                    <SidebarBtn icon="Notebook.svg" text="Course Management" href="/admin/Course" />
+                    <SidebarBtn icon="notebook.svg" text="Course Management" href="/admin/Course" />
                 </Navlink>
             </div>
 
