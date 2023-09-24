@@ -77,22 +77,22 @@ const StudentCourse = () => {
 
 
             <div className='block md:hidden border-[#D9D9D9] absolute ml-[-16px] w-full  bg-transparent outline-none border-transparent border-b-[1px] mb-[24px] pb-[16px]  ' >
-                <div className='w-[100px] text-[14px] text-black  relative ml-[16px]'>
-                    <div className='flex gap-[10px]'
+                <div className='w-[100px] text-[14px] text-black  relative ml-[16px] border-transparent border-b-[#D9D9D9]'>
+                    <div className='flex gap-[10px] border-b-[1px] px-4 py-2  '
                         onClick={() => {
                             window.document.querySelector(".DD").classList.toggle("hidden")
                             // selectRef.current.classList.toggle("hidden")
                             // selectRef.current.classList.add("hidden")
                         }}
                     >
-                        <h1 className='texy-[#505050] medium ' >{selectedCourse?.code}</h1>
-                        <Image src="/image/Alt Arrow Down.svg" height={12} width={12} alt="arrow-down" />
+                        <h1 className='texy-[#505050] text-[16px] leading-[24px] medium ' >{selectedCourse?.code}</h1>
+                        <Image src="/image/Alt Arrow Down.svg" height={20} width={20} alt="arrow-down" />
                     </div>
 
 
-                    <div ref={selectRef} className='z-[99] w-[170px] hidden absolute left-0 top-0 mt-[20px] DD bg-white'>
+                    <div ref={selectRef} className='z-[99] w-[170px] hidden absolute left-0 top-[10px] mt-[20px] DD bg-white'>
                         {courses.map((course, i) => (
-                            <h1 key={i} className='border-[1px] text-[505050] medium border-b-[1px] px-4 py-2 border-transparent border-b-[#D9D9D9]'
+                            <h1 key={i} className='border-[1px] text-[16px] leading-[24px] text-[505050] medium border-b-[1px] px-4 py-2 border-transparent border-b-[#D9D9D9] w-[85%] mx-auto '
                                 onClick={() => {
                                     setSelectedCourse(course)
                                     getCourse(course.id)
