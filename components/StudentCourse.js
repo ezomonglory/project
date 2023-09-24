@@ -76,7 +76,7 @@ console.log(selectedStudent)
             </div>
 
 
-            <div className='block md:hidden' >
+            <div className='block md:hidden border-[#D9D9D9] absolute ml-[-16px] w-full  bg-transparent outline-none border-transparent border-b-[1px] mb-[24px] pb-[16px]  ' >
                 <select ref={selectRef} className='w-[95px] bg-transparent outline-none border-transparent p-2 text-[14px]' onClick={() => {
 
                     courses?.forEach((course, i) => {
@@ -101,16 +101,16 @@ console.log(selectedStudent)
 
             {selectedStudent?.students?.length > 0 ?
                 <>
-                    <h1 className='text-[#141414] font-[500] text-[18px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[40px] md:pb-[32px] '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
+                    <h1 className='text-[#141414] font-[500] text-[18px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[70px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
 
 
-                    <div className='w-full h-[70vh] bg-white overflow-scroll scroll-hidden'>
+                    <div className='w-full h-[70vh] absolute md:static ml-[-16px] md:ml-0 md:bg-white overflow-scroll scroll-hidden'>
                         {load ? <div className='flex items-center justify-center h-full w-full'>
                             <FadeLoader color="#183DA7" />
                         </div> :
 
-                            <table>
-                                <thead>
+                            <table className='bg-transparent'>
+                                <thead className='bg-transparent'>
                                     <tr>
                                         <td className='text-[14px] text-[#949494] medium md:text-[16px]'>#</td>
                                         <td className='text-[14px] text-[#949494] medium md:text-[16px]'>Full Name</td>
