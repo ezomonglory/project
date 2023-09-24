@@ -107,7 +107,7 @@ const Course = () => {
                                 An error occured please check if you are connected <br /> to the internet and try again</p> </div> : load ? <div className='flex items-center justify-center h-full w-full'>
                                     < FadeLoader color="#183DA7" />
                                 </div> :
-                                 <table className=' w-[780px] bg-transparent'>
+                                 <table className=' w-[780px] md:w-full bg-transparent'>
                                 <thead className=' w-full'>
                                     <tr>
                                         <td className='text-[14px] md:text-[16px]'>#</td>

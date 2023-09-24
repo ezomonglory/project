@@ -116,12 +116,12 @@ const AddCourse = () => {
                     <DashboardLayout>
 
                         <div className='pb-[16px] md:pb-[32px] flex justify-between items-center'>
-                            <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium  '> Add new course </h1>
+                            <h1 className='text-[#141414] font-[500] text-[20px] mt-[8px] md:mt-0 md:text-[30px] leading-[28px]  md:leading-[38px] medium  '> Add new course </h1>
                         </div>
 
 
                         <>
-                            <div className='w-full h-[65vh] bg-transparent  md:bg-white overflow-scroll scroll-hidden overflow-x-scroll scroll-hidden'>
+                            <div className='absolute ml-[-16px] md:static md:ml-0  w-full h-[65vh] bg-transparent  md:bg-white overflow-scroll scroll-hidden overflow-x-scroll scroll-hidden'>
                                 <table className='w-[900px] bg-transparent'>
                                     <thead className='bg-gray-200 md:bg-white w-full'>
                                         <tr>
@@ -163,7 +163,7 @@ const AddCourse = () => {
                             </div>
 
 
-                            <div className='w-[150px] mt-[32px]' onClick={() => {
+                            <div className='w-[150px] mt-[32px] absolute bottom-[25px]' onClick={() => {
                                 setOpen(true)
 
                             }}>
