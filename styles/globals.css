@@ -56,9 +56,13 @@ table{
 }
 
 thead{
-    background-color: white;
+    background-color: #f9f9f9;
     position: sticky;    
     top: 0px;
+    padding: 12px;
+    padding-left: 34px;
+    border-bottom: 1px solid #E7E7ED;    
+    border-top: 1px solid #E7E7ED;    
 }
 
 tr,td,thead, tbody{
@@ -67,12 +71,7 @@ tr,td,thead, tbody{
     border-bottom: 1px solid #E7E7ED;    
 }
 
-thead{
-    padding: 12px;
-    padding-left: 34px;
-    border-bottom: 1px solid #E7E7ED;    
-    border-top: 1px solid #E7E7ED;      
-}
+
 
 
 .scroll-hidden::-webkit-scrollbar{
