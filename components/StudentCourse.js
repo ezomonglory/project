@@ -76,7 +76,7 @@ const StudentCourse = () => {
             </div>
 
 
-            <div className='block md:hidden border-[#D9D9D9] absolute bg-red-500 ml-[-16px] w-full  bg-transparent outline-none border-transparent border-b-[1px] mb-[24px] pb-[16px]  ' >
+            <div className='block md:hidden  w-full  bg-transparent outline-none border-transparent border-b-[1px] mb-[24px] pb-[16px]  ' >
                 <div className='w-[100px] text-[14px] text-black  relative ml-[16px] border-transparent border-b-[#D9D9D9]'>
                     <div className='flex gap-[10px] border-b-[1px] px-4 py-2  '
                         onClick={() => {
@@ -88,6 +88,8 @@ const StudentCourse = () => {
                         <h1 className='texy-[#505050] text-[16px] leading-[24px] medium ' >{selectedCourse?.code}</h1>
                         <Image src="/image/Alt Arrow Down.svg" height={20} width={20} alt="arrow-down" />
                     </div>
+
+                    <hr className='bg-[#D9D9D9] absolute  ml-[-16px] top-0 h-[4px] w-full ' />
 
 
                     <div ref={selectRef} className='z-[99] w-[170px] hidden absolute left-0 top-[15px] rounded-md mt-[20px] DD bg-white'>
