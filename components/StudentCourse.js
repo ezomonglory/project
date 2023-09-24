@@ -130,7 +130,7 @@ const StudentCourse = () => {
 
             {selectedStudent?.students?.length > 0 ?
                 <>
-                    <h1 className='text-[#141414] font-[500] text-[20px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[15px] md:pt-[52px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
+                    <h1 className='text-[#141414] font-[500] text-[20px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[15px] md:pt-[2px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
 
 
                     <div className='w-full h-[70vh] absolute md:static ml-[-16px] md:ml-0 md:bg-white overflow-scroll scroll-hidden'>
