@@ -163,7 +163,7 @@ const AddCourse = () => {
                             </div>
 
 
-                            <div className='w-[150px] mt-[32px] absolute bottom-[25px]' onClick={() => {
+                            <div className='w-[150px] mt-[32px] absolute  bottom-2 md:bottom-[25px]' onClick={() => {
                                 setOpen(true)
 
                             }}>

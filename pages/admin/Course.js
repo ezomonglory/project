@@ -130,7 +130,7 @@ const Course = () => {
                                             <td className='text-[14px] md:text-[16px]'>{Attendance.course_title}</td>
                                             <td className='text-[14px] md:text-[16px]'>{Attendance.course_credit}</td>
                                             <td className=''>
-                                                <div className='text-[12px] md:text-[12px] px-[12px] py-[3px] text-[#C60000]  border-[0.5px] border-[#C60000] rounded-md cursor-pointer  inline-block' onClick={() => {
+                                                <div className='text-[14px] px-[16px] py-[6px] text-[#C60000]  border-[0.5px] border-[#C60000] rounded-md cursor-pointer  inline-block' onClick={() => {
                                                     setID(Attendance.course_code)
                                                     setOpen(true)
                                                 }} >
