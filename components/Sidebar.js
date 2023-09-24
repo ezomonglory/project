@@ -45,7 +45,7 @@ const Sidebar = ({ setOpenModal }) => {
                 <div className="flex space-x-[16px] pl-[8px] cursor-pointer">
                     <div className="bg-gray-600 w-[20px] h-[20px] rounded-full">
                     </div>
-                    <h2 className="medium uppercase">{name}</h2>
+                    <h2 className="medium capitalize">{name}</h2>
                 </div>
 
                 <div className="cursor-pointer"
