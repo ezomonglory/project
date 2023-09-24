@@ -87,7 +87,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                         <div className='hidden md:block'>
 
                             {selectedStudent?.map((Attendance, index) => (
-                                <div key={index} className='hidden md:flex items-center justify-between rounded-4 p-[12px] bg-white mb-[16px]'>
+                                <div key={index} className='hidden md:flex items-center justify-between rounded-[12px] p-[12px] bg-white mb-[16px]'>
                                     <div className='text-[14px] md:text-[16px ]'><div className='flex gap-[16px] items-center'>
                                         <Image src="/image/File.svg" alt='file' width={20} height={20} /> {Attendance.course_title}
                                     </div></div>
