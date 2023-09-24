@@ -30,10 +30,6 @@ const AddCourse = () => {
         }
     }, [])
 
-    // useEffect(() => {
-    //     console.log(courses)
-    //     setSelectedCourse(courses[0])
-    // }, [User])
 
     useEffect(() => {
         getCourse()
@@ -142,10 +138,7 @@ const AddCourse = () => {
                                                     <input type='checkbox' ref={checkRef}
                                                         id={Attendance._id}
                                                         checked={checkBoxList[Attendance._id]}
-                                                        onChange={(e) => { handleChange(e) }}
-                                                    // onClick={() => {
-                                                    //     checkChecked()
-                                                    // }}
+                                                        onChange={(e) => { handleChange(e) }}                                                  
                                                     /></td>
                                                 <td className='text-[14px] md:text-[16px]'>{Attendance.course_semester}</td>
                                                 <td className='text-[14px] md:text-[16px]'>{Attendance.course_code}</td>

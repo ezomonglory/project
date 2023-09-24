@@ -6,8 +6,7 @@ import { useRouter } from "next/router"
 
 const SidebarBtn = ({ text, icon, href }) => {
     const router = useRouter()
-    const image = icon
-    console.log(`/Colored-${image}`)
+    const image = icon    
 
     // router.pathname === href ? `/image/Colored-${image}`:
 
