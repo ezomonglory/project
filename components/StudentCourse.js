@@ -76,9 +76,9 @@ const StudentCourse = () => {
             </div>
 
 
-            <div className='block md:hidden  w-full  mb-[24px] pb-[16px]  ' >
-                <div className='w-[100px] text-[14px] text-black  relative ml-[16px] border-transparent border-b-[#D9D9D9]'>
-                    <div className='flex gap-[10px] border-b-[1px] px-4 py-2  '
+            <div className='block md:hidden  w-full   pb-[16px]  ' >
+                <div className='w-[100px] text-[14px] text-black  relative  border-transparent border-b-[#D9D9D9]'>
+                    <div className='flex gap-[10px] border-b-[1px] py-2  '
                         onClick={() => {
                             window.document.querySelector(".DD").classList.toggle("hidden")
                             // selectRef.current.classList.toggle("hidden")
@@ -130,7 +130,7 @@ const StudentCourse = () => {
 
             {selectedStudent?.students?.length > 0 ?
                 <>
-                    <h1 className='text-[#141414] font-[500] text-[18px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[70px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
+                    <h1 className='text-[#141414] font-[500] text-[18px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[5px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
 
 
                     <div className='w-full h-[70vh] absolute md:static ml-[-16px] md:ml-0 md:bg-white overflow-scroll scroll-hidden'>
