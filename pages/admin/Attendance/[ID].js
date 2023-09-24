@@ -6,7 +6,7 @@ import { Courses } from "../../../data"
 
 const SingleAttendance = () => {
 
-       console.log(Courses)
+    console.log(Courses)
     return (
         <div>
 
@@ -18,29 +18,32 @@ const SingleAttendance = () => {
 
             <main>
                 <DashboardLayout>
-                    <h1 className='md:text-[30px] text-[18px] medium mt-[24px] mb-[16px] text-[#141414] md:font-[500] md:leading-[38px] md:pb-[50px] medium ' >Attendance 01</h1>
+                    <h1 className='md:text-[30px] text-[20px] medium  mb-[16px] text-[#141414] md:font-[500] md:leading-[38px] ] medium ' >Attendance 01</h1>
 
-                    <div className='w-full h-[78vh] bg-white overflow-scroll scroll-hidden'>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <td className='text-[14px] md:text-[16px]'>#</td>
-                                        <td className='text-[14px] md:text-[16px]'>Full Name</td>
-                                        <td className='text-[14px] md:text-[16px]'>Matriculation No.</td>
+                    <div className='w-full h-[78vh] bg-white overflow-scroll scroll-hidden absolute w-full md:static ml-[-13px]  md:ml-0'>
+                        <table className='bg-transparent'>
+                            <thead className=''>
+                                <tr>
+                                    <td className='text-[14px] bg-[F9F9F9] text-[#949494] medium md:text-[16px]'>#</td>
+                                    <td className='text-[14px] bg-[F9F9F9] text-[#949494] medium md:text-[16px]'>Full Name</td>
+                                    <td className='text-[14px] bg-[F9F9F9] text-[#949494] medium md:text-[16px]'>Matriculation No.</td>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {Courses[1]?.students?.map((student, index) => (
+                                    <tr key={index}>
+                                        <td className='text-[14px] md:text-[16px]'>{student.sn} </td>
+                                        <td className='text-[14px] md:text-[16px]'>{student.name}</td>
+                                        <td className='text-[14px] md:text-[16px]'>{student.matno}</td>
                                     </tr>
-                                </thead>
+                                ))}
+                            </tbody>
+                        </table>
 
-                                <tbody>
-                                    {Courses[1]?.students?.map((student, index) => (
-                                        <tr key={index}>                                        
-                                            <td className='text-[14px] md:text-[16px]'>{student.sn} </td>
-                                            <td className='text-[14px] md:text-[16px]'>{student.name}</td>
-                                            <td className='text-[14px] md:text-[16px]'>{student.matno}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+
+
+                    </div>
                 </DashboardLayout>
             </main>
         </div>
