@@ -159,8 +159,39 @@ const Home = () => {
                             </div>
 
 
-                            <div className='block md:hidden' >
-                                <select ref={selectRef} className='w-[95px] bg-transparent outline-none border-transparent p-2 text-[14px]' 
+
+                            <div className='block md:hidden  w-full   pb-[16px]  ' >
+                                <div className='w-[100px] text-[14px] text-black  relative  border-transparent border-b-[#D9D9D9]'>
+                                    <div className='flex gap-[10px] border-b-[1px] py-2  '
+                                        onClick={() => {
+                                            window.document.querySelector(".DD").classList.toggle("hidden")
+                                            // selectRef.current.classList.toggle("hidden")
+                                            // selectRef.current.classList.add("hidden")
+                                        }}
+                                    >
+                                        <h1 className='text-[#505050] text-[16px] leading-[24px] medium ' >{selectedCourse?.code}</h1>
+                                        <Image src="/image/Alt Arrow Down.svg" height={20} width={20} alt="arrow-down" />
+                                    </div>
+
+                                    <hr className='bg-[#D9D9D9] absolute   left-[-16px] bottom-0 w-screen h-[2px] ' />
+
+
+                                    <div ref={selectRef} className='z-[99] border-[0.5px] text-[#505050] w-[170px] hidden absolute left-0 top-[15px] rounded-[4px] mt-[20px] DD bg-white p-[8px]  '>
+                                        {courses.map((course, i) => (
+                                            <h1 key={i} className={`border-[1px]  text-[16px] leading-[24px] text-[505050] medium border-b-[1px] p-[8px] border-transparent  w-[149px] mx-auto mb-[8px] ${i !== courses.length - 1 && ("border-b-[#D9D9D9]")} `}
+                                                onClick={() => {
+                                                    setSelectedCourse(course)
+                                                    // getCourse(course.id)
+                                                    window.document.querySelector(".DD").classList.toggle("hidden")
+                                                }}
+                                            >
+                                                {course?.code}
+                                            </h1>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* <select ref={selectRef} className='w-[95px] bg-transparent outline-none border-transparent p-2 text-[14px]' 
                                 onClick={() => {
                                     console.log("clli")
                                     courses.forEach((course, i) => {
@@ -182,7 +213,7 @@ const Home = () => {
                                     }
                                     )
                                     }
-                                </select>
+                                </select> */}
                             </div>
                             <div className='pb-[16px] pt-[40px] md:pb-[32px] flex justify-between items-center'>
                                 <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium '> Attendance </h1>

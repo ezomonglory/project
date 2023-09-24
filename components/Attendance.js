@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import { Courses } from '../data'
-import { BounceLoader } from 'react-spinners'
+import { FadeLoader } from 'react-spinners'
 import { useRouter } from 'next/navigation'
 import Button from './Button'
 import Link from 'next/link'
@@ -45,8 +45,9 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
         // console.log(time)
         const tie = new Date(parseInt(time))
 
+
         const month = tie.getMonth()
-        const day = tie.getDay()
+        const day = tie.getDate()
         const year = tie.getFullYear()
         // console.log({ month, day, year })
         return day
@@ -78,42 +79,53 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
         <div>
 
 
-            <div className='w-full h-[70vh] bg-transparent  md:bg-white overflow-scroll scroll-hidden'>
+            <div className='w-full h-[70vh] bg-transparent  overflow-scroll scroll-hidden'>
                 {load ? <div className='flex items-center justify-center h-full w-full'>
-                    <BounceLoader color="#183DA7" />
+                    <FadeLoader color="#183DA7" />
                 </div> :
                     <>
-                        <table className='hidden md:table'>
-                            <tbody >
-                                {selectedStudent?.map((Attendance, index) => (
-                                    <tr key={index} className='hidden md:table-row'>
-                                        <td className='text-[14px] md:text-[16px]'><div className='flex gap-[16px] items-center'>
-                                            <Image src="/image/File.svg" alt='file' width={20} height={20} /> {Attendance.course_title}
-                                        </div></td>
-                                        <td className='text-[14px] md:text-[16px]'><span>{getMonth(Attendance.timeStamp)}</span>{" "}
-                                            <span>{getDay(Attendance.timeStamp)}</span>,
-                                            <span>{getYear(Attendance.timeStamp)}</span>
-                                        </td>
-                                        <td className='text-[14px] md:text-[16px]'>
-                                            <span>{getHour(Attendance.timeStamp)}:</span>
-                                            <span>{getMins(Attendance.timeStamp)}</span></td>
-                                        <td className='' onClick={() => {
+                        <div className='hidden md:block'>
+
+                            {selectedStudent?.map((Attendance, index) => (
+                                <div key={index} className='hidden md:flex items-center justify-between rounded-4 p-[12px] bg-white mb-[16px]'>
+                                    <div className='text-[14px] md:text-[16px ]'><div className='flex gap-[16px] items-center'>
+                                        <Image src="/image/File.svg" alt='file' width={20} height={20} /> {Attendance.course_title}
+                                    </div></div>
+                                    <div className='text-[14px] md:text-[16px]'><span>{getMonth(Attendance.timeStamp)}</span>{" "}
+                                        <span>{getDay(Attendance.timeStamp)}</span>, {" "}
+                                        <span>{getYear(Attendance.timeStamp)}</span>
+                                    </div>
+                                    <div className='text-[14px] md:text-[16px]'>
+                                        <span>{getHour(Attendance.timeStamp)}:</span>
+                                        <span>{getMins(Attendance.timeStamp)}</span> WAT</div>
+                                    <div className='flex items-center gap-[12px]'>
+                                        <div className='' onClick={() => {
+                                            // router.push("/admin/Attendance/1")
+                                        }}>
+                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[0.5px] border-[#183DA7] rounded-md cursor-pointer  inline-block' >
+
+                                                QR Code
+                                            </div>
+                                        </div>
+
+                                        <div className='' onClick={() => {
                                             router.push("/admin/Attendance/1")
                                         }}>
-                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[3px] text-[#183DA7]  border-[0.5px] border-[#183DA7] rounded-md cursor-pointer  inline-block' >
+                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[0.5px] border-[#183DA7] rounded-md cursor-pointer  inline-block' >
 
                                                 open
                                             </div>
-                                        </td>
+                                        </div>
+                                    </div>
 
-                                    </tr>
-                                ))}
-                            </tbody>
+                                </div>
+                            ))}
 
 
-                        </table>
 
-                        <Link
+                        </div>
+
+                        {/* <Link
                             href={{
                                 pathname: "/admin/Attendance/Report",
                                 query: data
@@ -124,7 +136,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                 <Button text="Generate Report" />
 
                             </div>
-                        </Link>
+                        </Link> */}
 
                     </>
                 }
@@ -144,18 +156,30 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
 
                             </div>
 
-                            <div className='text-[12px] md:text-[12px] px-[12px] py-[3px] text-[#183DA7]  border-[0.5px] border-[#183DA7] rounded-md cursor-pointer  inline-block'
-                                onClick={() => {
-                                    router.push("/admin/Attendance/1")
-                                }}
-                            >
+                            <div className='flex space-y-[12px] flex-col '>
+                                <div className='' onClick={() => {
+                                    // router.push("/admin/Attendance/1")
+                                }}>
+                                    <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[0.5px] border-[#183DA7] rounded-md text-center cursor-pointer  inline-block w-[80px] ' >
 
-                                open
-                            </div>
+                                        QR Code
+                                    </div>
+                                </div>
+
+
+                                <div className='text-[12px] md:text-[12px] px-[14px] py-[6px] text-[#183DA7]  border-[0.5px] border-[#183DA7] rounded-md text-center cursor-pointer  inline-block w-[80px] '
+                                    onClick={() => {
+                                        router.push("/admin/Attendance/1")
+                                    }}
+                                >
+
+                                    open
+                                </div>
+                          </div>
                         </div>
                     ))}
 
-                    <Link
+                    {/* <Link
                         href={{
                             pathname: "/admin/Attendance/Report",
                             query: data
@@ -165,7 +189,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                             <Button text="Generate Report" />
 
                         </div>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div >

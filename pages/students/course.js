@@ -115,7 +115,7 @@ import DashboardLayout from '../../components/DashboardLayout'
 import { useRouter } from 'next/router'
 import CourseModal from '../../components/CourseModal'
 import axios from 'axios'
-import { BounceLoader } from 'react-spinners'
+import { FadeLoader } from 'react-spinners'
 import StudentNoCourse from '../../components/StudentNoCourse'
 import StudentHeader from '../../components/StudentHeader'
 
@@ -198,7 +198,7 @@ const Course = () => {
 
             <main>
                 {load ? <div className='h-screen flex items-center justify-center  w-full'>
-                    < BounceLoader color="#183DA7" />
+                    < FadeLoader color="#183DA7" />
                 </div> :
                     err ? <div>
                         <StudentHeader />
