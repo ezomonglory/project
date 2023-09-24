@@ -65,7 +65,7 @@ const StudentCourse = () => {
         <div className=' h-screen'>
 
 
-            <div className='md:flex border-transparent border-[1px] border-b-[#D9D9D9]  w-full hidden mb-[52px]'>
+            <div className='md:flex border-transparent border-[1px] border-b-[#D9D9D9]  w-full hidden mb-[32px]'>
                 {courses?.map((course, i) => (
                     <h1 className={`mr-[40px] cursor-pointer   ${selectedCourse?.code === course.code ? "text-[#183DA7] border-[3px] border-transparent border-b-[#183DA7] pb-[10px]  " : 'text-[#9E9E9E]  pb-[10px] '} `}
                         key={i} onClick={() => {
