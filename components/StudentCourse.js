@@ -92,7 +92,7 @@ const StudentCourse = () => {
                     <hr className='bg-[#D9D9D9] absolute   left-[-16px] bottom-0 w-screen h-[2px] ' />
 
 
-                    <div ref={selectRef} className='z-[99] border-[0.5px] text-[#505050] w-[170px] hidden absolute left-0 top-[15px] rounded-[4px] mt-[20px] DD bg-white  p-[8px] '>
+                    <div ref={selectRef} className='z-[99] border-[0.5px] text-[#505050] w-[170px] hidden absolute left-0 top-[15px] rounded-[4px] mt-[20px] p-[8px] DD bg-white  p-[8px] '>
                         {courses.map((course, i) => (
                             <h1 key={i} className={`border-[1px]  text-[16px] leading-[24px] text-[505050] medium border-b-[1px]  border-transparent  w-[149px] mx-auto mb-[8px] ${i !== courses.length - 1 && ("border-b-[#D9D9D9]")} `}
                                 onClick={() => {
