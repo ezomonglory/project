@@ -91,7 +91,7 @@ const Course = () => {
                 {open ? <CourseModal ID={ID} setLoad={setLoad} user={user} Attendance={Attendance} setAttendance={setAttendance} text="delete" texting="removal" color="bg-red-600" setOpen={setOpen} icon="/image/Danger Circle.svg" /> :
                     <DashboardLayout>
                         <div className='pb-[16px] md:pb-[32px] flex justify-between items-center mt-[32px] md:mt-0'>
-                            <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium '> Courses </h1>
+                            <h1 className='text-[#141414] font-[500] text-[20px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium '> Courses </h1>
                             <div className='hidden md:flex bg-[#183DA7] px-[16px] py-[8px]  space-x-[8px] text-white items-center rounded-md cursor-pointer' onClick={() => {
                                 Router.push("/admin/AddCourse")
                             }} >
@@ -106,8 +106,8 @@ const Course = () => {
                             {err ? <div>  <Image src="/image/Teacher.svg" className='hidden md:block' width={430} height={300} alt="teacher" /> <Image src="/image/Teacher.svg" className='block md:hidden' width={330} height={250} alt="teacher" />  <p className='text-[#505050] font-[500] text-center '>
                                 An error occured please check if you are connected <br /> to the internet and try again</p> </div> : load ? <div className='flex items-center justify-center h-full w-full'>
                                     < FadeLoader color="#183DA7" />
-                                </div> : <table className='w-[900px] bg-transparent'>
-                                <thead className='bg-gray-200 md:bg-white w-full'>
+                                </div> : <table className='w-full bg-transparent'>
+                                <thead className=' w-full'>
                                     <tr>
                                         <td className='text-[14px] md:text-[16px]'>#</td>
                                         <td className='text-[14px] md:text-[16px]'>Semester</td>
