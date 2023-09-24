@@ -29,7 +29,7 @@ const Sidebar = ({ setOpenModal }) => {
 
             <div className="flex flex-col space-y-[16px]  ">
                 <Navlink href="/admin/Student">
-                    <SidebarBtn icon="user Id.svg" text="Student" href="/admin/Student" />
+                <SidebarBtn icon="user.svg" text="Student" href="/admin/Student" />
 
                 </Navlink>
                 <Navlink href="/admin/Attendance">
