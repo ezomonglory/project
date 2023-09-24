@@ -92,9 +92,9 @@ const StudentCourse = () => {
                     <hr className='bg-[#D9D9D9] absolute   left-[-16px] bottom-0 w-screen h-[2px] ' />
 
 
-                    <div ref={selectRef} className='z-[99] w-[170px] hidden absolute left-0 top-[15px] rounded-md mt-[20px] DD bg-white'>
+                    <div ref={selectRef} className='z-[99] w-[170px] hidden absolute left-0 top-[15px] rounded-[4px] mt-[20px] DD bg-white w-[165px] '>
                         {courses.map((course, i) => (
-                            <h1 key={i} className='border-[1px] text-[16px] leading-[24px] text-[505050] medium border-b-[1px] p-[8px] border-transparent border-b-[#D9D9D9] w-[85%] mx-auto mb-[8px]'
+                            <h1 key={i} className={`border-[1px]  text-[16px] leading-[24px] text-[505050] medium border-b-[1px] p-[8px] border-transparent  w-[149px] mx-auto mb-[8px] ${i !== courses.length - 1 && ("border-b-[#D9D9D9]")} `}
                                 onClick={() => {
                                     setSelectedCourse(course)
                                     getCourse(course.id)
@@ -139,11 +139,11 @@ const StudentCourse = () => {
                         </div> :
 
                             <table className='bg-transparent'>
-                                <thead className='bg-transparent'>
+                                <thead className=''>
                                     <tr>
-                                        <td className='text-[14px] text-[#949494] medium md:text-[16px]'>#</td>
-                                        <td className='text-[14px] text-[#949494] medium md:text-[16px]'>Full Name</td>
-                                        <td className='text-[14px] text-[#949494] medium md:text-[16px]'>Matriculation No.</td>
+                                        <td className='text-[14px] bg-[F9F9F9] text-[#949494] medium md:text-[16px]'>#</td>
+                                        <td className='text-[14px] bg-[F9F9F9] text-[#949494] medium md:text-[16px]'>Full Name</td>
+                                        <td className='text-[14px] bg-[F9F9F9] text-[#949494] medium md:text-[16px]'>Matriculation No.</td>
                                     </tr>
                                 </thead>
 
