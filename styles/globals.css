@@ -56,7 +56,7 @@ table{
 }
 
 thead{
-    background-color: black;
+    background-color: #d1d1d1;
     position: sticky;    
     top: 0px;
     padding: 12px;

@@ -171,15 +171,7 @@ const Home = () => {
 
 
 
-                                }}
-                                    // onchange={() => {
-                                    //     console.log("channfe")
-                                    //     courses.forEach((course, i) => {
-                                    //         if (Number(selectRef.current.value) === i) {
-                                    //             setSelectedCourse(course)
-                                    //         }
-                                    //     })
-                                    // }}
+                                }}                                   
                                 >
                                     {courses.map((course, i) => {
 
