@@ -77,7 +77,7 @@ console.log(selectedStudent)
 
 
             <div className='block md:hidden border-[#D9D9D9] absolute ml-[-16px] w-full  bg-transparent outline-none border-transparent border-b-[1px] mb-[24px] pb-[16px]  ' >
-                <select ref={selectRef} className='w-[95px] bg-transparent outline-none border-transparent p-2 text-[14px]' onClick={() => {
+                <select ref={selectRef} className='w-[50%] bg-red-500 outline-none border-transparent p-2 text-[14px]' onClick={() => {
 
                     courses?.forEach((course, i) => {
                         if (Number(selectRef.current.value) === i) {
