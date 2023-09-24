@@ -65,7 +65,7 @@ const StudentCourse = () => {
         <div className=' h-screen'>
 
 
-            <div className='md:flex border-transparent border-[1px] border-b-[#D9D9D9]  w-full hidden'>
+            <div className='md:flex border-transparent border-[1px] border-b-[#D9D9D9]  w-full hidden mb-[52px]'>
                 {courses?.map((course, i) => (
                     <h1 className={`mr-[40px] cursor-pointer   ${selectedCourse?.code === course.code ? "text-[#183DA7] border-[3px] border-transparent border-b-[#183DA7] pb-[10px]  " : 'text-[#9E9E9E]  pb-[10px] '} `}
                         key={i} onClick={() => {
@@ -130,7 +130,7 @@ const StudentCourse = () => {
 
             {selectedStudent?.students?.length > 0 ?
                 <>
-                    <h1 className='text-[#141414] font-[500] text-[20px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[15px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
+                    <h1 className='text-[#141414] font-[500] text-[20px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[15px] md:pt-[52px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
 
 
                     <div className='w-full h-[70vh] absolute md:static ml-[-16px] md:ml-0 md:bg-white overflow-scroll scroll-hidden'>

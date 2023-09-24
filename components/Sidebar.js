@@ -41,7 +41,7 @@ const Sidebar = ({ setOpenModal }) => {
             </div>
 
 
-            <div className="flex flex-col space-y-[16px] md:absolute   ">
+            <div className="flex flex-col space-y-[16px] md:absolute bottom-4   ">
                 <div className="flex space-x-[16px] pl-[8px] cursor-pointer">
                     <div className="bg-gray-600 w-[20px] h-[20px] rounded-full">
                     </div>
