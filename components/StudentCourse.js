@@ -92,7 +92,7 @@ const StudentCourse = () => {
                     <hr className='bg-[#D9D9D9] absolute   left-[-16px] bottom-0 w-screen h-[2px] ' />
 
 
-                    <div ref={selectRef} className='z-[99] w-[170px] hidden absolute left-0 top-[15px] rounded-[4px] mt-[20px] DD bg-white w-[165px] '>
+                    <div ref={selectRef} className='z-[99] text-[#505050] w-[170px] hidden absolute left-0 top-[15px] rounded-[4px] mt-[20px] DD bg-white w-[165px] '>
                         {courses.map((course, i) => (
                             <h1 key={i} className={`border-[1px]  text-[16px] leading-[24px] text-[505050] medium border-b-[1px] p-[8px] border-transparent  w-[149px] mx-auto mb-[8px] ${i !== courses.length - 1 && ("border-b-[#D9D9D9]")} `}
                                 onClick={() => {
@@ -130,7 +130,7 @@ const StudentCourse = () => {
 
             {selectedStudent?.students?.length > 0 ?
                 <>
-                    <h1 className='text-[#141414] font-[500] text-[20px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[5px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
+                    <h1 className='text-[#141414] font-[500] text-[20px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[15px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
 
 
                     <div className='w-full h-[70vh] absolute md:static ml-[-16px] md:ml-0 md:bg-white overflow-scroll scroll-hidden'>
