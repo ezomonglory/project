@@ -76,7 +76,7 @@ const StudentCourse = () => {
             </div>
 
 
-            <div className='block md:hidden  w-full  bg-transparent outline-none border-transparent border-b-[1px] mb-[24px] pb-[16px]  ' >
+            <div className='block md:hidden  w-full  mb-[24px] pb-[16px]  ' >
                 <div className='w-[100px] text-[14px] text-black  relative ml-[16px] border-transparent border-b-[#D9D9D9]'>
                     <div className='flex gap-[10px] border-b-[1px] px-4 py-2  '
                         onClick={() => {
