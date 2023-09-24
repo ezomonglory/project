@@ -89,7 +89,7 @@ const StudentCourse = () => {
                         <Image src="/image/Alt Arrow Down.svg" height={20} width={20} alt="arrow-down" />
                     </div>
 
-                    <hr className='bg-[#D9D9D9] absolute  ml-[-16px] top-0 h-[4px] w-full ' />
+                    <hr className='bg-[#D9D9D9] absolute  ml-[-16px] left-[-16px] bottom-0 w-screen h-[2px] ' />
 
 
                     <div ref={selectRef} className='z-[99] w-[170px] hidden absolute left-0 top-[15px] rounded-md mt-[20px] DD bg-white'>
