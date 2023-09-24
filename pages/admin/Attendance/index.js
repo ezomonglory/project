@@ -216,7 +216,7 @@ const Home = () => {
                                 </select> */}
                             </div>
                             <div className='pb-[16px] pt-[8px] md:pt-[24px] md:pb-[24px] flex justify-between items-center'>
-                                <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium '> Attendance </h1>
+                                <h1 className='text-[#141414] font-[500] text-[20px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium '> Attendance </h1>
                                 <div className='hidden md:flex bg-[#183DA7] px-[16px] py-[8px]  space-x-[8px] text-white items-center rounded-md cursor-pointer text-[14px] newqrcode'
                                     onClick={() => {
                                         setQrLoad(true)

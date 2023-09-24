@@ -102,7 +102,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                         <div className='' onClick={() => {
                                             // router.push("/admin/Attendance/1")
                                         }}>
-                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] rounded-md cursor-pointer  inline-block' >
+                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] medium rounded-md cursor-pointer  inline-block' >
 
                                                 QR Code
                                             </div>
@@ -111,7 +111,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                         <div className='' onClick={() => {
                                             router.push("/admin/Attendance/1")
                                         }}>
-                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] rounded-md cursor-pointer  inline-block' >
+                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] medium rounded-md cursor-pointer  inline-block' >
 
                                                 open
                                             </div>
@@ -141,10 +141,10 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                     </>
                 }
 
-                <div className='flex flex-col md:hidden gap-y-4  w-full h-full'>
+                <div className='flex flex-col md:hidden gap-y-[16px]  w-full h-full'>
                     {selectedStudent?.map((Attendance, i) => (
 
-                        <div className='flex justify-between items-center border-[0.5px] border-transparent border-t-[#D9D9D9] pt-[8px]' key={i}>
+                        <div className='flex justify-between items-center border-[0.5px] border-transparent border-t-[#D9D9D9] pt-[16px]' key={i}>
                             <div className='flex flex-col gap-y-2 text-black' >
                                 <h1 className='text-[14px] text-[#000]'> {Attendance.course_title} </h1>
                                 <h1 className='text-[14px] text-[#505050]'> <span>               {getMonth(Attendance.timeStamp)}</span>{" "}
@@ -160,14 +160,14 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                 <div className='' onClick={() => {
                                     // router.push("/admin/Attendance/1")
                                 }}>
-                                    <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] rounded-md text-center cursor-pointer  inline-block w-[80px] ' >
+                                    <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] medium rounded-md text-center cursor-pointer  inline-block w-[80px] ' >
 
                                         QR Code
                                     </div>
                                 </div>
 
 
-                                <div className='text-[12px] md:text-[12px] px-[14px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] rounded-md text-center cursor-pointer  inline-block w-[80px] '
+                                <div className='text-[12px] md:text-[12px] px-[14px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] medium rounded-md text-center cursor-pointer  inline-block w-[80px] '
                                     onClick={() => {
                                         router.push("/admin/Attendance/1")
                                     }}
