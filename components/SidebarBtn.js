@@ -3,7 +3,6 @@ import Image from "next/image"
 import { useRouter } from "next/router"
 
 
-
 const SidebarBtn = ({text, icon, href}) => {
     const router = useRouter()        
     const image = icon    
