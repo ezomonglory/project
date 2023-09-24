@@ -85,16 +85,16 @@ const StudentCourse = () => {
                             // selectRef.current.classList.add("hidden")
                         }}
                     >
-                        <h1 className='texy-[#505050] text-[16px] leading-[24px] medium ' >{selectedCourse?.code}</h1>
+                        <h1 className='text-[#505050] text-[16px] leading-[24px] medium ' >{selectedCourse?.code}</h1>
                         <Image src="/image/Alt Arrow Down.svg" height={20} width={20} alt="arrow-down" />
                     </div>
 
-                    <hr className='bg-[#D9D9D9] absolute  ml-[-16px] left-[-16px] bottom-0 w-screen h-[2px] ' />
+                    <hr className='bg-[#D9D9D9] absolute   left-[-16px] bottom-0 w-screen h-[2px] ' />
 
 
                     <div ref={selectRef} className='z-[99] w-[170px] hidden absolute left-0 top-[15px] rounded-md mt-[20px] DD bg-white'>
                         {courses.map((course, i) => (
-                            <h1 key={i} className='border-[1px] text-[16px] leading-[24px] text-[505050] medium border-b-[1px] px-4 py-2 border-transparent border-b-[#D9D9D9] w-[85%] mx-auto '
+                            <h1 key={i} className='border-[1px] text-[16px] leading-[24px] text-[505050] medium border-b-[1px] p-[8px] border-transparent border-b-[#D9D9D9] w-[85%] mx-auto mb-[8px]'
                                 onClick={() => {
                                     setSelectedCourse(course)
                                     getCourse(course.id)
@@ -130,7 +130,7 @@ const StudentCourse = () => {
 
             {selectedStudent?.students?.length > 0 ?
                 <>
-                    <h1 className='text-[#141414] font-[500] text-[18px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[5px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
+                    <h1 className='text-[#141414] font-[500] text-[20px] medium  md:text-[30px] leading-[28px]  md:leading-[38px] pb-[16px] pt-[5px] md:pb-[32px]  '> {load ? " " : `${selectedStudent?.students?.length} Student`} </h1>
 
 
                     <div className='w-full h-[70vh] absolute md:static ml-[-16px] md:ml-0 md:bg-white overflow-scroll scroll-hidden'>
