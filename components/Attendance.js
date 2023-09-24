@@ -87,7 +87,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                         <div className='hidden md:block'>
 
                             {selectedStudent?.map((Attendance, index) => (
-                                <div key={index} className='hidden md:flex items-center justify-between rounded-[12px] p-[12px] bg-white mb-[16px]'>
+                                <div key={index} className='hidden md:flex items-center justify-between rounded-[6px] p-[12px] bg-white mb-[16px]'>
                                     <div className='text-[14px] md:text-[16px ]'><div className='flex gap-[16px] items-center'>
                                         <Image src="/image/File.svg" alt='file' width={20} height={20} /> {Attendance.course_title}
                                     </div></div>
@@ -102,7 +102,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                         <div className='' onClick={() => {
                                             // router.push("/admin/Attendance/1")
                                         }}>
-                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2.5px] border-[#E2EAFE] rounded-md cursor-pointer  inline-block' >
+                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] rounded-md cursor-pointer  inline-block' >
 
                                                 QR Code
                                             </div>
@@ -111,7 +111,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                         <div className='' onClick={() => {
                                             router.push("/admin/Attendance/1")
                                         }}>
-                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2.5px] border-[#E2EAFE] rounded-md cursor-pointer  inline-block' >
+                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] rounded-md cursor-pointer  inline-block' >
 
                                                 open
                                             </div>
@@ -152,7 +152,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                     <span>{getYear(Attendance.timeStamp)}</span>
                                 </h1>
                                 <h1 className='text-[14px] text-[#505050]'>     <span>{getHour(Attendance.timeStamp)}:</span>
-                                    <span>{getMins(Attendance.timeStamp)}</span> </h1>
+                                    <span>{getMins(Attendance.timeStamp)}</span> WAT </h1>
 
                             </div>
 
@@ -160,14 +160,14 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                 <div className='' onClick={() => {
                                     // router.push("/admin/Attendance/1")
                                 }}>
-                                    <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2.5px] border-[#E2EAFE] rounded-md text-center cursor-pointer  inline-block w-[80px] ' >
+                                    <div className='text-[12px] md:text-[12px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] rounded-md text-center cursor-pointer  inline-block w-[80px] ' >
 
                                         QR Code
                                     </div>
                                 </div>
 
 
-                                <div className='text-[12px] md:text-[12px] px-[14px] py-[6px] text-[#183DA7]  border-[2.5px] border-[#E2EAFE] rounded-md text-center cursor-pointer  inline-block w-[80px] '
+                                <div className='text-[12px] md:text-[12px] px-[14px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] rounded-md text-center cursor-pointer  inline-block w-[80px] '
                                     onClick={() => {
                                         router.push("/admin/Attendance/1")
                                     }}
