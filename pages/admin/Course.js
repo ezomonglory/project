@@ -98,7 +98,7 @@ const Course = () => {
                 {open ? <CourseModal ID={ID} setLoad={setLoad} user={user} Attendance={Attendance} setAttendance={setAttendance} text="delete" texting="removal" color="bg-red-600" setOpen={setOpen} icon="/image/Danger Circle.svg" /> :
                     <DashboardLayout>
                         <div className='pb-[16px] md:pb-[32px] flex justify-between items-center mt-[8px] md:mt-0'>
-                            <h1 className='text-[#141414] font-[500] text-[20px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium '> Courses </h1>
+                            <h1 className='text-[#141414] font-[500] text-[20px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium  '> Courses </h1>
                             <div className='hidden md:flex bg-[#183DA7] px-[16px] py-[8px]  space-x-[8px] text-white items-center rounded-md cursor-pointer' onClick={() => {
                                 Router.push("/admin/AddCourse")
                             }} >

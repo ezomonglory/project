@@ -26,10 +26,10 @@ const Course = () => {
         const user = JSON.parse(window.localStorage.getItem("user"))
         if (user) {
             console.log(user)
-            setUser(user)          
+            setUser(user)
         }
 
-        if(user.courses.length === 0){
+        if (user.courses.length === 0) {
             window.location.href = "/students/AddCourse"
         }
     }, [])
@@ -41,7 +41,7 @@ const Course = () => {
             getCourses()
         }
 
-        if(user?.courses.length === 0){
+        if (user?.courses.length === 0) {
             console.log("hey empty")
         }
 
@@ -75,7 +75,7 @@ const Course = () => {
                     }
 
                 })
-            });           
+            });
         }).catch((Err) => {
             setLoad(false)
             setErr(true)
@@ -108,61 +108,63 @@ const Course = () => {
                             <>
                                 <StudentHeader />
 
-                                <div className='pb-[16px]  md:pb-[32px] flex justify-between items-center mt-[40px] '>
-                                    <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium '> Courses </h1>
-                                    <div className='hidden md:flex bg-[#183DA7] px-[16px] py-[8px]  space-x-[8px] text-white items-center rounded-md cursor-pointer' onClick={() => {
-                                        Router.push("/students/AddCourse")
-                                    }} >
-                                        <Image src="/image/Frame.svg" height={20} width={20} alt="qr" /> <span>Add Course</span>
+                                <div className='w-full h-full md:p-[40px] bg-[#F4F4F4] '>
+                                    <div className='pb-[16px]  md:pb-[32px] flex justify-between items-center pt-[40px] '>
+                                        <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium ml-[16px] md:ml-0 '> Courses </h1>
+                                        <div className='hidden md:flex bg-[#183DA7] px-[16px] py-[8px]  space-x-[8px] text-white items-center rounded-md cursor-pointer' onClick={() => {
+                                            Router.push("/students/AddCourse")
+                                        }} >
+                                            <Image src="/image/Frame.svg" height={20} width={20} alt="qr" /> <span>Add Course</span>
+                                        </div>
                                     </div>
-                                </div>
 
 
 
 
-                                <div className='w-full h-[80vh] bg-transparent  md:bg-white overflow-scroll scroll-hidden overflow-x-scroll scroll-hidden'>
-                                    <table className='w-[900px] bg-transparent'>
-                                        <thead className='bg-gray-200 md:bg-white w-full'>
-                                            <tr>
-                                                <td className='text-[14px] md:text-[16px]'>#</td>
-                                                <td className='text-[14px] md:text-[16px]'>Semester</td>
-                                                <td className='text-[14px] md:text-[16px]'>Course Code</td>
-                                                <td className='text-[14px] md:text-[16px]'>Course Title</td>
-                                                <td className='text-[14px] md:text-[16px]'>Credit</td>
-                                                <td className='text-[14px] md:text-[16px]'></td>
-
-                                            </tr>
-                                        </thead>
-
-
-                                        <tbody >
-                                            {Attendance?.length >= 1 && (Attendance?.map((Attendance, index) => (
-                                                <tr key={index} className=''>
-                                                    <td className='text-[14px] md:text-[16px]'>{index + 1}</td>
-                                                    <td className='text-[14px] md:text-[16px]'>{Attendance.course_semester}</td>
-                                                    <td className='text-[14px] md:text-[16px]'>{Attendance.course_code}</td>
-                                                    <td className='text-[14px] md:text-[16px]'>{Attendance.course_title}</td>
-                                                    <td className='text-[14px] md:text-[16px]'>{Attendance.course_credit}</td>
-                                                    <td className=''>
-                                                        <div className='text-[12px] md:text-[12px] px-[12px] py-[3px] text-[#C60000]  border-[0.5px] border-[#C60000] rounded-md cursor-pointer  inline-block' onClick={() => {
-                                                            setID(Attendance.course_code)
-                                                            setOpen(true)
-                                                        }} >
-
-                                                            Delete
-                                                        </div>
-                                                    </td>
+                                    <div className='w-full h-[80vh] bg-transparent md:bg-white  overflow-scroll scroll-hidden overflow-x-scroll scroll-hidden'>
+                                        <table className='w-[900px] md:w-full bg-transparent'>
+                                            <thead className='bg-gray-200  w-full'>
+                                                <tr>
+                                                    <td className='text-[14px] md:text-[16px]'>#</td>
+                                                    <td className='text-[14px] md:text-[16px]'>Semester</td>
+                                                    <td className='text-[14px] md:text-[16px]'>Course Code</td>
+                                                    <td className='text-[14px] md:text-[16px]'>Course Title</td>
+                                                    <td className='text-[14px] md:text-[16px]'>Credit</td>
+                                                    <td className='text-[14px] md:text-[16px]'></td>
 
                                                 </tr>
-                                            )))}
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            </thead>
 
-                                <div className='fixed right-[20px] items-center justify-center flex bottom-[20%] bg-[#183DA7] rounded-full w-[48px] h-[48px] md:hidden' onClick={() => {
-                                    Router.push("/students/AddCourse")
-                                }}>
-                                    <Image src="/image/Frame.svg" alt="plus" width={24} height={24} />
+
+                                            <tbody >
+                                                {Attendance?.length >= 1 && (Attendance?.map((Attendance, index) => (
+                                                    <tr key={index} className=''>
+                                                        <td className='text-[14px] md:text-[16px]'>{index + 1}</td>
+                                                        <td className='text-[14px] md:text-[16px]'>{Attendance.course_semester}</td>
+                                                        <td className='text-[14px] md:text-[16px]'>{Attendance.course_code}</td>
+                                                        <td className='text-[14px] md:text-[16px]'>{Attendance.course_title}</td>
+                                                        <td className='text-[14px] md:text-[16px]'>{Attendance.course_credit}</td>
+                                                        <td className=''>
+                                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[3px] text-[#C60000]  border-[0.5px] border-[#C60000] rounded-md cursor-pointer  inline-block' onClick={() => {
+                                                                setID(Attendance.course_code)
+                                                                setOpen(true)
+                                                            }} >
+
+                                                                Delete
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+                                                )))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div className='fixed right-[20px] items-center justify-center flex bottom-[20%] bg-[#183DA7] rounded-full w-[48px] h-[48px] md:hidden' onClick={() => {
+                                        Router.push("/students/AddCourse")
+                                    }}>
+                                        <Image src="/image/Frame.svg" alt="plus" width={24} height={24} />
+                                    </div>
                                 </div>
 
                             </>

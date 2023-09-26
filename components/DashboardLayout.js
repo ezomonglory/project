@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from './Sidebar'
-import DashboardMobileHeader from './DashboardMobileHeader'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import StudentNoCourse from './StudentNoCourse'
+import DashboardMobileHeader from './DashboardMobileHEader'
 
 
 const DashboardLayout = ({ children, openModal }) => {

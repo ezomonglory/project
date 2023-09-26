@@ -8,7 +8,7 @@ const SidebarBtn = ({ text, icon, href }) => {
     const router = useRouter()
     const image = icon    
 
-    // router.pathname === href ? `/image/Colored-${image}`:
+    console.log(href)    
 
     return (
         <div className="flex space-x-[16px] py-[8px] items-center" current-link={router.pathname === href ? "page" : "null"} >

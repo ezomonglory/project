@@ -280,16 +280,16 @@ const AddCourse = () => {
                     < >
                         <StudentHeader />
 
-                      <div className='md:px-[40px] py-[12px]'>
+                      <div className='bg-[#F4F4F4] w-full md:p-[300px] px-[16px]'>
                       <div className='pb-[16px] md:pb-[32px] flex mt-[40px] justify-between items-center'>
                             <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium  '> Add new course </h1>
                         </div>
 
 
                         <>
-                            <div className='w-full flex  h-[65vh] bg-transparent  md:bg-white overflow-scroll scroll-hidden overflow-x-scroll scroll-hidden'>
+                            <div className='w-full flex  h-[65vh] bg-transparent  md:bg-red-500 overflow-scroll scroll-hidden overflow-x-scroll scroll-hidden '>
                                 <table className='w-[900px] bg-transparent'>
-                                    <thead className='bg-gray-200 md:bg-white w-full'>
+                                    <thead className='bg-gray-200 w-full'>
                                         <tr>
                                             <td className='text-[14px] md:text-[16px]'><input type='checkbox' disabled /></td>
                                             <td className='text-[14px] md:text-[16px]'>Semester</td>

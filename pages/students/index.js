@@ -17,7 +17,8 @@ const Index = () => {
     const [course, setCourse] = useState([])
     const [called, setCalled] = useState(false)
     const qrRef = useRef(null)
-
+    const sessionArray = []
+    const userArray = []
 
     useEffect(() => {
         const user = JSON.parse(window.localStorage.getItem("user"))
@@ -38,7 +39,6 @@ const Index = () => {
                 getSession(element.id)
             });
 
-            console.log(courses + "cours")
         }
 
 
@@ -57,20 +57,28 @@ const Index = () => {
     const getSession = async (id) => {
         await axios.get(`https://attendx-2hi6.onrender.com/session/get-session/${id}`).then((res) => {
             console.log(res)
+
+
             res.data.forEach((data) => {
+                sessionArray.push({ course_code: data.course_code })
                 console.log(res)
-                Session.push(data)
+                // Session.push(data)
                 if (!course.includes({ "course_code": data.course_code, "percentage": 0 })) {
                     course.push({ "course_code": data.course_code, "percentage": 0 })
                 }
                 data.attendance.forEach((attend) => {
                     if (attend.matric_number === user.identity_number) {
-                        attendance.push(data)
-                        setCalled(!called)
+                        userArray.push({"course_code":data.course_code})
 
                     }
                 })
             })
+
+            sessionArray.length > 0 && setSession(sessionArray)
+            userArray.length > 0 && setAttendance(userArray)
+
+
+            console.log({ "Session": sessionArray, "user": userArray })
 
         })
 
@@ -94,7 +102,7 @@ const Index = () => {
                     <>
 
                         <StudentHeader />
-                        <div className='md:px-[128px] mt-[40px] px-[20px] h-screen'>
+                        {/* <div className='md:px-[128px] mt-[40px] px-[20px] h-screen'>
                             <div className='flex items-center justify-between mb-[32px]'>
                                 <h1 className='text-[18px] md:text-[30px] medium text-[#141414]'>Class Attendance</h1>
                                 <div className='bg-[#183DA7] rounded-md py-[8px] px-[16px] md:flex space-x-[8px] cursor-pointer hidden' onClick={() => {
@@ -114,7 +122,13 @@ const Index = () => {
 
                             </div>
                             {attendance.length > 0 && (<AttendanceGrid session={Session} attendance={attendance} course={course} />)}
-                        </div></>
+                        </div> */}
+
+                        <div className='h-screen flex items-center justify-center'>
+                            COMING SOON..........
+                        </div>
+                        
+                        </>
                 }
             </main>
 
