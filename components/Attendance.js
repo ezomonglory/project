@@ -9,20 +9,20 @@ import axios from 'axios'
 var QRCode = require('qrcode')
 
 
-const Attendance = ({ setLoad, setQrLoad, load, selectedStudent,qrImage, setQrImage, setQrShow, setOpenModal, setSelectedCourse }) => {
-    
+const Attendance = ({ setLoad, setQrLoad, load, selectedStudent, qrImage, setQrImage, setQrShow, setOpenModal, setSelectedCourse }) => {
+
 
     const router = useRouter()
 
-    
-    const getQrcode = async (qrCode) => {        
+
+    const getQrcode = async (qrCode) => {
         console.log("iio")
         setOpenModal(true)
         setQrLoad(true)
         QRCode.toDataURL(qrCode, function (err, url) {
             setQrShow(true)
-            setQrImage(url) 
-            console.log(qrImage)                       
+            setQrImage(url)
+            console.log(qrImage)
             setQrLoad(false)
             console.log("heyy")
         })
@@ -140,18 +140,7 @@ const Attendance = ({ setLoad, setQrLoad, load, selectedStudent,qrImage, setQrIm
 
                         </div>
 
-                        {/* <Link
-                            href={{
-                                pathname: "/admin/Attendance/Report",
-                                query: data
-                            }}
-                            className='hidden md:block'
-                        >
-                            <div className='w-[150px] mt-[32px]'>
-                                <Button text="Generate Report" />
 
-                            </div>
-                        </Link> */}
 
                     </>
                 }
@@ -173,7 +162,7 @@ const Attendance = ({ setLoad, setQrLoad, load, selectedStudent,qrImage, setQrIm
 
                             <div className='flex space-y-[12px] flex-col '>
                                 <div className='' onClick={() => {
-                                    getQrcode()
+                                    getQrcode(Attendance.qrCode)
                                 }}>
                                     <div className='text-[14px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] medium rounded-md text-center cursor-pointer  inline-block w-[100px] ' >
 
@@ -187,7 +176,6 @@ const Attendance = ({ setLoad, setQrLoad, load, selectedStudent,qrImage, setQrIm
                                         router.push("/admin/Attendance/1")
                                     }}
                                 >
-
                                     open
                                 </div>
                             </div>

@@ -4,6 +4,7 @@ import DashboardLayout from '../../components/DashboardLayout'
 import Button from '../../components/Button';
 import CourseModal from '../../components/CourseModal';
 import axios from 'axios';
+import { FadeLoader } from 'react-spinners';
 
 const AddCourse = () => {
 
@@ -45,16 +46,16 @@ const AddCourse = () => {
 
 
     useEffect(() => {
-       if(checkBoxList){
-        const Arr = Array.from(checkBoxList)
-        console.log(checkBoxList)
-        console.log(Arr)
-        Arr?.forEach((box)=> {
-            if(box){
-                console.log(box)
-            }
-        })  
-       }
+        if (checkBoxList) {
+            const Arr = Array.from(checkBoxList)
+            console.log(checkBoxList)
+            console.log(Arr)
+            Arr?.forEach((box) => {
+                if (box) {
+                    console.log(box)
+                }
+            })
+        }
     }, [checkBoxList])
 
     const updateArray = () => {
@@ -73,6 +74,7 @@ const AddCourse = () => {
     }
 
     const getCourse = async (course) => {
+        setLoad(true)
         console.log("Course called")
         setLoad(true)
         await axios.get(`https://attendx-2hi6.onrender.com/course/all-courses`).then((res) => {
@@ -80,7 +82,7 @@ const AddCourse = () => {
             setLoad(false)
             setErr(false)
             setAttendance(res.data)
-            console.log(res.data)            
+            console.log(res.data)
         }).catch((err) => {
             console.log("Course error")
             setErr(true)
@@ -91,7 +93,7 @@ const AddCourse = () => {
 
     }
 
-   
+
 
 
 
@@ -110,46 +112,54 @@ const AddCourse = () => {
 
                     <DashboardLayout>
 
-                        <div className='pb-[16px] md:pb-[32px] flex justify-between items-center'>
+                        <div className='pb-[24px] md:pb-[32px]   md:flex justify-between items-center'>
                             <h1 className='text-[#141414] font-[500] text-[20px] mt-[8px] md:mt-0 md:text-[30px] leading-[28px]  md:leading-[38px] medium  '> Add new course </h1>
+
+                            <hr className='h-[1px] md:hidden bg-[#d9d9d9] w-full relative mt-[16px]  ml-[-16px]  ' />
+
                         </div>
 
 
                         <>
                             <div className='absolute ml-[-16px] md:static md:ml-0  w-full h-[65vh] bg-transparent  md:bg-white overflow-scroll scroll-hidden overflow-x-scroll scroll-hidden'>
-                                <table className='w-[900px] bg-transparent'>
-                                    <thead className='bg-gray-200 md:bg-white w-full'>
-                                        <tr>
-                                            <td className='text-[14px] md:text-[16px]'><input type='checkbox' disabled /></td>
-                                            <td className='text-[14px] md:text-[16px]'>Semester</td>
-                                            <td className='text-[14px] md:text-[16px]'>Course Code</td>
-                                            <td className='text-[14px] md:text-[16px]'>Course Title</td>
-                                            <td className='text-[14px] md:text-[16px]'>Credit</td>
 
-                                        </tr>
-                                    </thead>
-
-
-                                    <tbody >
-                                        {Attendance?.map((Attendance, index) => (
-                                            <tr key={index} className=''>
-                                                <td className='text-[14px] md:text-[16px]'>
-                                                    <input type='checkbox' ref={checkRef}
-                                                        id={Attendance._id}
-                                                        checked={checkBoxList[Attendance._id]}
-                                                        onChange={(e) => { handleChange(e) }}                                                  
-                                                    /></td>
-                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_semester}</td>
-                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_code}</td>
-                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_title}</td>
-                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_credit}</td>
+                                {
+                                    load ? <div className='flex items-center justify-center h-full w-full'>
+                                        < FadeLoader color="#183DA7" />
+                                    </div> : <table className='w-[900px] bg-transparent'>
+                                        <thead className=' w-full'>
+                                            <tr>
+                                                <td className='text-[14px] md:text-[16px]'><input type='checkbox' disabled /></td>
+                                                <td className='text-[14px] md:text-[16px]'>Semester</td>
+                                                <td className='text-[14px] md:text-[16px]'>Course Code</td>
+                                                <td className='text-[14px] md:text-[16px]'>Course Title</td>
+                                                <td className='text-[14px] md:text-[16px]'>Credit</td>
 
                                             </tr>
-                                        ))}
-                                    </tbody>
+                                        </thead>
 
 
-                                </table>
+                                        <tbody >
+                                            {Attendance?.map((Attendance, index) => (
+                                                <tr key={index} className=''>
+                                                    <td className='text-[14px] md:text-[16px]'>
+                                                        <input type='checkbox' ref={checkRef}
+                                                            id={Attendance._id}
+                                                            checked={checkBoxList[Attendance._id]}
+                                                            onChange={(e) => { handleChange(e) }}
+                                                        /></td>
+                                                    <td className='text-[14px] md:text-[16px]'>{Attendance.course_semester}</td>
+                                                    <td className='text-[14px] md:text-[16px]'>{Attendance.course_code}</td>
+                                                    <td className='text-[14px] md:text-[16px]'>{Attendance.course_title}</td>
+                                                    <td className='text-[14px] md:text-[16px]'>{Attendance.course_credit}</td>
+
+                                                </tr>
+                                            ))}
+                                        </tbody>
+
+
+                                    </table>
+                                }
 
 
                             </div>

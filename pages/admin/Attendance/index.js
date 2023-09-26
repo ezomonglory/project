@@ -60,7 +60,8 @@ const Home = () => {
                 QRCode.toDataURL(res.data.qrCode, function (err, url) {
                     console.log(url)
                     getSession(course._id)
-                    setQrImage(url)
+                    setQrImage(url)  
+                    setQrShow(true)                  
                     setQrLoad(false)
                 })
             })
@@ -264,6 +265,7 @@ const Home = () => {
 
 
                         <div className='fixed right-[20px] items-center justify-center flex bottom-[20%] bg-[#183DA7] rounded-full w-[48px] h-[48px] md:hidden newqrcode' onClick={() => {
+                            setQrLoad(true)
                             qrcode()
                             setOpenModal(true)
 

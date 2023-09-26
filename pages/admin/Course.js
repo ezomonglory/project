@@ -97,8 +97,11 @@ const Course = () => {
 
                 {open ? <CourseModal ID={ID} setLoad={setLoad} user={user} Attendance={Attendance} setAttendance={setAttendance} text="delete" texting="removal" color="bg-red-600" setOpen={setOpen} icon="/image/Danger Circle.svg" /> :
                     <DashboardLayout>
-                        <div className='pb-[16px] md:pb-[32px] flex justify-between items-center mt-[8px] md:mt-0'>
-                            <h1 className='text-[#141414] font-[500] text-[20px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium  '> Courses </h1>
+                        <div className='pb-[16px] md:pb-[32px] md:flex justify-between items-center mt-[8px] md:mt-0 mb-[24px] '>
+                            <h1 className='text-[#141414] font-[500] text-[20px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium '> Courses Management </h1>
+                          
+                            <hr className='h-[1px] bg-[#d9d9d9] md:hidden w-full absolute w-full mt-[16px]  ml-[-16px]  ' />
+
                             <div className='hidden md:flex bg-[#183DA7] px-[16px] py-[8px]  space-x-[8px] text-white items-center rounded-md cursor-pointer' onClick={() => {
                                 Router.push("/admin/AddCourse")
                             }} >
@@ -114,15 +117,15 @@ const Course = () => {
                                 An error occured please check if you are connected <br /> to the internet and try again</p> </div> : load ? <div className='flex items-center justify-center h-full w-full'>
                                     < FadeLoader color="#183DA7" />
                                 </div> :
-                                <table className=' w-[780px] md:w-full bg-transparent'>
+                                <table className=' w-[980px] md:w-full bg-transparent  md:mt-0   '>
                                     <thead className=' w-full'>
                                         <tr>
-                                            <td className='text-[14px] md:text-[16px]'>#</td>
-                                            <td className='text-[14px] md:text-[16px]'>Semester</td>
-                                            <td className='text-[14px] md:text-[16px]'>Course Code</td>
-                                            <td className='text-[14px] md:text-[16px]'>Course Title</td>
-                                            <td className='text-[14px] md:text-[16px]'>Credit</td>
-                                            <td className='text-[14px] md:text-[16px]'></td>
+                                            <td className='text-[14px] text-[#8a8a8a] md:text-[16px]'>#</td>
+                                            <td className='text-[14px] text-[#8a8a8a] md:text-[16px]'>Semester</td>
+                                            <td className='text-[14px] text-[#8a8a8a] md:text-[16px]'>Course Code</td>
+                                            <td className='text-[14px] text-[#8a8a8a] md:text-[16px]'>Course Title</td>
+                                            <td className='text-[14px] text-[#8a8a8a] md:text-[16px]'>Credit</td>
+                                            <td className='text-[14px] text-[#8a8a8a] md:text-[16px]'></td>
 
                                         </tr>
                                     </thead>
