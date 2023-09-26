@@ -11,9 +11,8 @@ const AddCourse = () => {
     const [open, setOpen] = useState(false)
     const [check, setCheck] = useState(false)
     const [checkBoxList, setCheckBoxList] = useState([])
-
     const checkRef = useRef()
-
+    const [courses, setCourses] = useState([])
     const [load, setLoad] = useState(false)
     const [selectedCourse, setSelectedCourse] = useState()
     const [User, setUser] = useState()
@@ -107,7 +106,7 @@ const AddCourse = () => {
             <main>
 
 
-                {open ? <CourseModal text="update" texting="updating" user={User} Attendance={checkBoxList} setOpen={setOpen} color="bg-[#183DA7]" icon="image/Notebook.svg" /> :
+                {open ? <CourseModal text="update" texting="updating" user={User} courses={Attendance} Attendance={checkBoxList} setOpen={setOpen} color="bg-[#183DA7]" icon="image/Notebook.svg" /> :
 
                     <DashboardLayout>
 

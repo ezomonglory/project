@@ -15,15 +15,6 @@ export default function Home() {
     const [selectedCourse, setSelectedCourse] = useState([])
 
 
-
-    // useEffect(() => {
-    //     const user = JSON.parse(window.localStorage.getItem("user"))
-    //     setCourses(user.courses)
-    //     if (courses.length > 1) {
-    //         console.log(courses)
-    //     }
-    // }, [])
-
     useEffect(() => {
         const user = JSON.parse(window.localStorage.getItem("user"))
         console.log(user)

@@ -5,15 +5,34 @@ import { FadeLoader } from 'react-spinners'
 import { useRouter } from 'next/navigation'
 import Button from './Button'
 import Link from 'next/link'
+import axios from 'axios'
+var QRCode = require('qrcode')
 
 
-const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
+const Attendance = ({ setLoad, load, selectedStudent, setOpenModal, setSelectedCourse }) => {
+    const [qrload, setQrLoad] = useState(true)
+
     const router = useRouter()
     const selectRef = useRef()
     const [data, setData] = useState({ name: '' });
 
     const [name, setName] = useState("")
-    console.log(selectedStudent)
+    const [qrImage, setQrImage] = useState(false)
+    console.log(selectedStudent, "hhhhe")
+
+
+    const getQrcode = async (qrCode) => {
+        console.log("iio")
+        setOpenModal(true)
+        setQrLoad(true)
+        QRCode.toDataURL(qrCode, function (err, url) {
+            setQrImage(url)
+            console.log(url)
+            setQrLoad(false)
+            console.log("heyy")
+        })
+
+    }
 
     const getMonth = (time) => {
         // console.log(time)
@@ -79,6 +98,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
         <div>
 
 
+
             <div className='w-full h-[70vh] bg-transparent  overflow-scroll scroll-hidden'>
                 {load ? <div className='flex items-center justify-center h-full w-full'>
                     <FadeLoader color="#183DA7" />
@@ -100,9 +120,9 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
                                         <span>{getMins(Attendance.timeStamp)}</span> WAT</div>
                                     <div className='flex items-center gap-[12px]'>
                                         <div className='' onClick={() => {
-                                            // router.push("/admin/Attendance/1")
+                                            getQrcode(Attendance.qrCode)
                                         }}>
-                                            <div className='text-[14px] px-[18px] py-[8px] text-[#183DA7]  border-[2px] border-[#E2EAFE] medium rounded-md cursor-pointer  inline-block' >
+                                            <div className='text-[14px] px-[18px] py-[8px] text-[#183DA7]  border-[2px] border-[#E2EAFE] medium rounded-md cursor-pointer  inline-block newqrcode' >
 
                                                 QR Code
                                             </div>
@@ -158,7 +178,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
 
                             <div className='flex space-y-[12px] flex-col '>
                                 <div className='' onClick={() => {
-                                    // router.push("/admin/Attendance/1")
+                                    getQrcode()
                                 }}>
                                     <div className='text-[14px] px-[12px] py-[6px] text-[#183DA7]  border-[2px] border-[#E2EAFE] medium rounded-md text-center cursor-pointer  inline-block w-[100px] ' >
 
@@ -175,7 +195,7 @@ const Attendance = ({ setLoad, load, selectedStudent, setSelectedCourse }) => {
 
                                     open
                                 </div>
-                          </div>
+                            </div>
                         </div>
                     ))}
 

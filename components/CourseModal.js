@@ -5,13 +5,14 @@ import axios from 'axios'
 import ClipLoader from "react-spinners/ClipLoader";
 import { useRouter } from 'next/router';
 
-const CourseModal = ({ Attendance, setLoad, user, setAttendance, ID, text, icon, color, setOpen, texting }) => {
+const CourseModal = ({ Attendance, setLoad, courses, user, setAttendance, ID, text, icon, color, setOpen, texting }) => {
 
     const [btnLoad, setBtnLoad] = useState(false)
     const [check, setCheck] = useState([])
     const router = useRouter()
 
-    console.log(router.pathname)
+
+    console.log(ID)
 
     const deleteCourse = async () => {
         setBtnLoad(true)
@@ -24,7 +25,7 @@ const CourseModal = ({ Attendance, setLoad, user, setAttendance, ID, text, icon,
             setBtnLoad(false)
             // router.push("/admin/Course")
             window.location.reload()
-            
+
         })
     }
 
@@ -37,28 +38,35 @@ const CourseModal = ({ Attendance, setLoad, user, setAttendance, ID, text, icon,
 
             }
         }
-        
+
+
+
         const data = {
             full_name: user.full_name,
             identity_number: user.identity_number,
             role: user.role,
             courses: keyValues
         }
-        
-        await axios.post("https://attendx-2hi6.onrender.com/course/add-course", data).then((res)=> {
+
+        console.log(data)
+        // const users = JSON.parse(window.localStorage.getItem("user"))
+        // const newCourses = [data.courses]
+        // users.courses = newCourses
+
+
+        await axios.post("https://attendx-2hi6.onrender.com/course/add-course", data).then((res) => {
             console.log(res)
             console.log(res.data.user)
-            window.localStorage.setItem("user", JSON.stringify(res.data.user))
             setOpen(false)
-            // router.push("/admin/Course")
+            window.localStorage.setItem("user", JSON.stringify(res.data.user))              
             console.log(router.pathname)
-            if(router.pathname === "/students/AddCourse") {
+            if (router.pathname === "/students/AddCourse") {
                 window.location.href = "/students/course"
             }
-             if(router.pathname === "/admin/AddCourse") {
+            if (router.pathname === "/admin/AddCourse") {
                 window.location.href = "/admin/Course"
             }
-        }).catch((err)=> {
+        }).catch((err) => {
             console.log(err)
         })
     }

@@ -45,15 +45,16 @@ const Course = () => {
 
 
     const getCourses = async () => {
+        const userArr = []
         setLoad(true)
         await axios.get("https://attendx-2hi6.onrender.com/course/all-courses").then((res) => {
-            console.log(res.data)
-            setLoad(false)
+            console.log(res.data)            
             res.data.forEach(course => {
                 course.lecturers.forEach((lecturer) => {
                     if (user?.identity_number === lecturer.staff_id) {
                         console.log(course)
                         setCalled(!called)
+                        userArr.push({ code: course.course_code, id: course._id })
                         setErr(false)
                         console.log("Called")
                         Attendance.push(course)
@@ -63,9 +64,15 @@ const Course = () => {
 
 
                 })
-            });            
-            if (Attendance.length === 0) {
+            });
+            if (Attendance.length === 0) {                
+            }
+            if (userArr.length > 0) {
+                const userData = JSON.parse(window.localStorage.getItem("user"))
+                userData.courses = userArr
+                window.localStorage.setItem("user", JSON.stringify(userData))
                 setLoad(false)
+
             }
         }).catch((Err) => {
             setLoad(false)
@@ -107,42 +114,42 @@ const Course = () => {
                                 An error occured please check if you are connected <br /> to the internet and try again</p> </div> : load ? <div className='flex items-center justify-center h-full w-full'>
                                     < FadeLoader color="#183DA7" />
                                 </div> :
-                                 <table className=' w-[780px] md:w-full bg-transparent'>
-                                <thead className=' w-full'>
-                                    <tr>
-                                        <td className='text-[14px] md:text-[16px]'>#</td>
-                                        <td className='text-[14px] md:text-[16px]'>Semester</td>
-                                        <td className='text-[14px] md:text-[16px]'>Course Code</td>
-                                        <td className='text-[14px] md:text-[16px]'>Course Title</td>
-                                        <td className='text-[14px] md:text-[16px]'>Credit</td>
-                                        <td className='text-[14px] md:text-[16px]'></td>
-
-                                    </tr>
-                                </thead>
-
-
-                                <tbody >
-                                    {Attendance?.length >= 1 && (Attendance?.map((Attendance, index) => (
-                                        <tr key={index} className=''>
-                                            <td className='text-[14px] md:text-[16px]'>{index + 1}</td>
-                                            <td className='text-[14px] md:text-[16px]'>{Attendance.course_semester}</td>
-                                            <td className='text-[14px] md:text-[16px]'>{Attendance.course_code}</td>
-                                            <td className='text-[14px] md:text-[16px]'>{Attendance.course_title}</td>
-                                            <td className='text-[14px] md:text-[16px]'>{Attendance.course_credit}</td>
-                                            <td className=''>
-                                                <div className='text-[14px] px-[16px] py-[6px] text-[#C60000]  border-[0.5px] border-[#C60000] rounded-md cursor-pointer  inline-block' onClick={() => {
-                                                    setID(Attendance.course_code)
-                                                    setOpen(true)
-                                                }} >
-
-                                                    Delete
-                                                </div>
-                                            </td>
+                                <table className=' w-[780px] md:w-full bg-transparent'>
+                                    <thead className=' w-full'>
+                                        <tr>
+                                            <td className='text-[14px] md:text-[16px]'>#</td>
+                                            <td className='text-[14px] md:text-[16px]'>Semester</td>
+                                            <td className='text-[14px] md:text-[16px]'>Course Code</td>
+                                            <td className='text-[14px] md:text-[16px]'>Course Title</td>
+                                            <td className='text-[14px] md:text-[16px]'>Credit</td>
+                                            <td className='text-[14px] md:text-[16px]'></td>
 
                                         </tr>
-                                    )) )}
-                                </tbody>
-                            </table>
+                                    </thead>
+
+
+                                    <tbody >
+                                        {Attendance?.length >= 1 && (Attendance?.map((Attendance, index) => (
+                                            <tr key={index} className=''>
+                                                <td className='text-[14px] md:text-[16px]'>{index + 1}</td>
+                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_semester}</td>
+                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_code}</td>
+                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_title}</td>
+                                                <td className='text-[14px] md:text-[16px]'>{Attendance.course_credit}</td>
+                                                <td className=''>
+                                                    <div className='text-[14px] px-[16px] py-[6px] text-[#C60000]  border-[0.5px] border-[#C60000] rounded-md cursor-pointer  inline-block' onClick={() => {
+                                                        setID(Attendance.course_code)
+                                                        setOpen(true)
+                                                    }} >
+
+                                                        Delete
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                        )))}
+                                    </tbody>
+                                </table>
                             }
                         </div>
 

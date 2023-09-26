@@ -4,6 +4,7 @@ import AttendanceCard from './AttendanceCard'
 const AttendanceGrid = ({ attendance, session, course }) => {
 
     const percentage = Math.round((attendance.length/session.length)*100    ) 
+    console.log(course + "attend")
 
     return (
         <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-y-[24px] md:gap-x-[48px] md:gap-y-[32px]'>

@@ -22,7 +22,6 @@ const Index = () => {
     useEffect(() => {
         const user = JSON.parse(window.localStorage.getItem("user"))
         if (user) {
-            console.log(user)
             setUser(user)
         }
     }, [])
@@ -35,45 +34,48 @@ const Index = () => {
 
     useEffect(() => {
         if (courses) {
-            console.log(courses)
             courses?.forEach(element => {
                 getSession(element.id)
             });
+
+            console.log(courses + "cours")
         }
+
+
     }, [courses])
 
     useEffect(() => {
         console.log("calllld")
         if (!called) {
-            console.log(attendance)
             console.log(course)
         }
- 
+
 
     }, [called])
 
-    
+
     const getSession = async (id) => {
-        console.log("gesession called")
         await axios.get(`https://attendx-2hi6.onrender.com/session/get-session/${id}`).then((res) => {
             console.log(res)
             res.data.forEach((data) => {
+                console.log(res)
                 Session.push(data)
-                if(!course.includes({"course_code": data.course_code, "percentage":0})){
-                    course.push({"course_code": data.course_code, "percentage":0})
+                if (!course.includes({ "course_code": data.course_code, "percentage": 0 })) {
+                    course.push({ "course_code": data.course_code, "percentage": 0 })
                 }
                 data.attendance.forEach((attend) => {
                     if (attend.matric_number === user.identity_number) {
-                        if (!attendance.includes(data)) {
-                            attendance.push(data)
-                        }
+                        attendance.push(data)
                         setCalled(!called)
-                        console.log("heyyy")
-                        console.log(attendance)
+
                     }
                 })
             })
+
         })
+
+
+
     }
 
 
@@ -97,15 +99,12 @@ const Index = () => {
                                 <h1 className='text-[18px] md:text-[30px] medium text-[#141414]'>Class Attendance</h1>
                                 <div className='bg-[#183DA7] rounded-md py-[8px] px-[16px] md:flex space-x-[8px] cursor-pointer hidden' onClick={() => {
                                     setScan(true)
-                                    // onScanFile()
                                 }}>
                                     <Image src="/image/Frame.svg" width={20} height={20} alt="scan" />
                                     <h2 className='text-white'>Scan Code</h2>
                                 </div>
                                 <div className='fixed right-[20px] items-center justify-center flex bottom-[20%] bg-[#183DA7] rounded-full w-[48px] h-[48px] md:hidden' onClick={() => {
                                     setScan(true)
-                                    // onScanFile()
-
                                 }}>
                                     <Image src="/image/Frame.svg" width={20} height={20} alt="scan" />
                                 </div>

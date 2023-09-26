@@ -35,7 +35,7 @@ const DashboardLayout = ({ children, openModal }) => {
 
 
 
-            {(Courses.length === 0 && Router.pathname !== "/admin/AddCourse") ?
+            {(Courses?.length === 0 && Router.pathname !== "/admin/AddCourse") ?
                 <div className={openModal ? 'bg-[#F4F4F4] w-full ' : ' bg-[#F4F4F4] w-full md:p-[40px] px-[16px]'}>
                     <div className='block md:hidden py-6 w-full'>
                         <DashboardMobileHeader />

@@ -15,13 +15,13 @@ const Home = () => {
     const Router = useRouter()
     const selectRef = useRef()
     const [load, setLoad] = useState(true)
-    const [qrload, setQrLoad] = useState(true)
+    const [qrload, setQrLoad] = useState(false)
     const [selectedCourse, setSelectedCourse] = useState()
     const [courses, setCourses] = useState([])
     const [err, setErr] = useState(false)
     const [selectedStudent, setSelectedStudent] = useState()
     const [openModal, setOpenModal] = useState(false)
-    const [qrImage, setQrImage] = useState(false)
+    const [qrImage, setQrImage] = useState()
 
 
     useEffect(() => {
@@ -58,6 +58,7 @@ const Home = () => {
                 console.log(res.data.qrCode)
                 QRCode.toDataURL(res.data.qrCode, function (err, url) {
                     console.log(url)
+                    getSession(course._id)
                     setQrImage(url)
                     setQrLoad(false)
                 })
@@ -80,9 +81,11 @@ const Home = () => {
     }, [])
 
     useEffect(() => {
-        console.log("Courses")
-        console.log(courses)
-        setSelectedCourse(courses[0])
+        if (courses) {
+            console.log("Courses")
+            console.log(courses)
+            setSelectedCourse(courses[0])
+        }
     }, [courses])
 
     useEffect(() => {
@@ -107,7 +110,14 @@ const Home = () => {
             console.log(err)
         })
 
+    }
 
+    const scanCode = async (qrCode) => {
+        setQrLoad(true)
+
+        axios.post("https://attendx-2hi6.onrender.com/session/scan-qrCode", { qrCode: qrCode }).then((res) => {
+
+        })
     }
 
 
@@ -126,23 +136,27 @@ const Home = () => {
                             <div className=' p-[32px] md:w-[440px] w-[90%]   z-50 bg-white flex flex-col items-center justify-center modelBackground' >
                                 {qrload ? <div className='flex items-center justify-center h-full w-full'>
                                     <FadeLoader color="#183DA7" />
-                                </div> : <>
-                                    <div className='items-center justify-center flex flex-col'>
-                                        <Image src="/image/Scanner 3.svg" width={40} height={40} alt='scan' />
-                                        <h1 className=' text-[#141414] text-[24px] mt-[10px] md:text-[30px] medium md:leading-[38px] '>New QR-CODE</h1>
-                                        <h2 className=' text-[#9E9E9E] md:text-[14px] md:leading-[22px] md:font-[400] text-[12px] '>Track student attendance with this QR Code</h2>
-                                    </div>
+                                </div> :
+                                    
+                                    (qrImage && (<>
+                                        <div className='items-center justify-center flex flex-col'>
+                                            <Image src="/image/Scanner 3.svg" width={40} height={40} alt='scan' />
+                                            <h1 className=' text-[#141414] text-[24px] mt-[10px] md:text-[30px] medium md:leading-[38px] '>QR-CODE</h1>
+                                            <h2 className=' text-[#9E9E9E] md:text-[14px] md:leading-[22px] md:font-[400] text-[12px] '>Track student attendance with this QR Code</h2>
+                                        </div>
 
-                                    <Image src={qrImage} width={220} height={220} alt="Qr-code" className='hidden md:block' />
-                                    <Image src={qrImage} width={220} height={220} alt="Qr-code" className="block md:hidden" />
+                                        <Image src={qrImage} width={220} height={220} alt="Qr-code" className='hidden md:block' />
+                                        <Image src={qrImage} width={220} height={220} alt="Qr-code" className="block md:hidden" />
 
 
-                                    <div className='w-[80%] mx-auto'>
-                                        <div className=' mt-[16px] w-full h-[40px] cursor-pointer flex items-center justify-center bg-[#183DA7] text-[#fff] border-[0.5px] border-[#E2EAFE]  py-[12px] px-[16px] text-center rounded-md leading-[24px] ' > Share </div>
+                                        <div className='w-[80%] mx-auto'>
+                                            <div className=' mt-[16px] w-full h-[40px] cursor-pointer flex items-center justify-center bg-[#183DA7] text-[#fff] border-[0.5px] border-[#E2EAFE]  py-[12px] px-[16px] text-center rounded-md leading-[24px] ' > Share </div>
 
-                                        <div className=' mt-[16px] w-full h-[40px] cursor-pointer flex items-center justify-center bg-[#FFF] text-[#183DA7] border-[0.5px] border-[#E2EAFE]  py-[12px] px-[16px] text-center rounded-md leading-[24px] ' > Download </div>
-                                    </div>
-                                </>}
+                                            <div className=' mt-[16px] w-full h-[40px] cursor-pointer flex items-center justify-center bg-[#FFF] text-[#183DA7] border-[0.5px] border-[#E2EAFE]  py-[12px] px-[16px] text-center rounded-md leading-[24px] ' > Download </div>
+                                        </div>
+                                    </>))
+                                
+                                }
                             </div>
                         </div>
                     )
@@ -151,7 +165,7 @@ const Home = () => {
 
                         <div className=' h-screen'>
                             <div className='md:flex border-transparent border-[1px] border-b-[#D9D9D9]  w-full hidden'>
-                                {courses.map((course, i) => (
+                                {courses?.map((course, i) => (
                                     <h1 className={`mr-[40px] cursor-pointer   ${selectedCourse?.code === course.code ? "text-[#183DA7] border-[4px] border-transparent border-b-[#183DA7] pb-[10px]  " : 'text-[#9E9E9E]  pb-[10px] '} `} key={i} onClick={() => {
                                         setSelectedCourse(course)
                                     }} >{course.code}</h1>
@@ -177,7 +191,7 @@ const Home = () => {
 
 
                                     <div ref={selectRef} className='z-[99] border-[0.5px] text-[#505050] w-[170px] hidden absolute left-0 top-[15px] rounded-[4px] mt-[20px] DD bg-white p-[8px]  '>
-                                        {courses.map((course, i) => (
+                                        {courses?.map((course, i) => (
                                             <h1 key={i} className={`border-[1px]  text-[16px] leading-[24px] text-[505050] medium border-b-[1px] p-[8px] border-transparent  w-[149px] mx-auto mb-[8px] ${i !== courses.length - 1 && ("border-b-[#D9D9D9]")} `}
                                                 onClick={() => {
                                                     setSelectedCourse(course)
@@ -228,7 +242,7 @@ const Home = () => {
                                 </div>
                             </div>
 
-                            {selectedStudent?.length > 0 ? <Attendance load={load} setLoad={setLoad} setOpenModal={setOpenModal} setSelectedCourse={setSelectedCourse} openModal={openModal} selectedStudent={selectedStudent} /> :
+                            {selectedStudent?.length > 0 ? <Attendance setQrLoad={setQrLoad} setQrImage={setQrImage} load={load} setLoad={setLoad} setOpenModal={setOpenModal} setSelectedCourse={setSelectedCourse} openModal={openModal} selectedStudent={selectedStudent} /> :
                                 load ? <div className='flex items-center justify-center h-[60vh] w-full'>
                                     <FadeLoader color="#183DA7" />
                                 </div> :
@@ -240,9 +254,6 @@ const Home = () => {
                                                 generated for this course.</p>
                                         </div>
                             }
-
-
-
 
 
                         </div>
