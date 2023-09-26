@@ -17,7 +17,7 @@ const Sidebar = ({ setOpenModal }) => {
     }, [])
 
     return (
-        <div className=" bg-white  flex flex-col space-y-[36px] relative w-full  md:w-[250px] xl:w-[300px] h-full px-[24px] py-[48px] " >
+        <div className=" bg-white  flex flex-col space-y-[24px] relative w-full  md:w-[250px] xl:w-[300px] h-full px-[24px] py-[48px] " >
             <div className="flex justify-between items-center">
                 <Image src="/image/new logo 1.png" alt="logo" width={114} height={32} />
                 <div className="md:hidden" onClick={() => {
@@ -39,6 +39,8 @@ const Sidebar = ({ setOpenModal }) => {
                     <SidebarBtn icon="Notebook.svg" text="Course Management" href="/admin/Course" />
                 </Navlink>
             </div>
+
+            <hr className="h-[1px] bg-[#e7e7ed] w-full md:hidden " />
 
 
             <div className="flex flex-col space-y-[16px] md:absolute bottom-4   ">

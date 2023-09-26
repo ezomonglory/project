@@ -9,25 +9,20 @@ import axios from 'axios'
 var QRCode = require('qrcode')
 
 
-const Attendance = ({ setLoad, load, selectedStudent, setOpenModal, setSelectedCourse }) => {
-    const [qrload, setQrLoad] = useState(true)
+const Attendance = ({ setLoad, setQrLoad, load, selectedStudent,qrImage, setQrImage, setQrShow, setOpenModal, setSelectedCourse }) => {
+    
 
     const router = useRouter()
-    const selectRef = useRef()
-    const [data, setData] = useState({ name: '' });
 
-    const [name, setName] = useState("")
-    const [qrImage, setQrImage] = useState(false)
-    console.log(selectedStudent, "hhhhe")
-
-
-    const getQrcode = async (qrCode) => {
+    
+    const getQrcode = async (qrCode) => {        
         console.log("iio")
         setOpenModal(true)
         setQrLoad(true)
         QRCode.toDataURL(qrCode, function (err, url) {
-            setQrImage(url)
-            console.log(url)
+            setQrShow(true)
+            setQrImage(url) 
+            console.log(qrImage)                       
             setQrLoad(false)
             console.log("heyy")
         })

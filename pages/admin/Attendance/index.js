@@ -21,7 +21,8 @@ const Home = () => {
     const [err, setErr] = useState(false)
     const [selectedStudent, setSelectedStudent] = useState()
     const [openModal, setOpenModal] = useState(false)
-    const [qrImage, setQrImage] = useState()
+    const [qrImage, setQrImage] = useState("")
+    const [qrShow, setQrShow] = useState()
 
 
     useEffect(() => {
@@ -120,6 +121,8 @@ const Home = () => {
         })
     }
 
+    console.log(qrImage+"qrrrr")
+
 
     return (
         <div>
@@ -133,13 +136,14 @@ const Home = () => {
                 {openModal ?
                     (
                         <div className='h-screen  flex top-0 z-30  w-full items-center justify-center modalBackground'>
-                            <div className=' p-[32px] md:w-[440px] w-[90%]   z-50 bg-white flex flex-col items-center justify-center modelBackground' >
+                            <div className='rounded-[8px]  p-[32px] md:w-[440px] w-[90%]   z-50 bg-white flex flex-col items-center justify-center modelBackground' >
                                 {qrload ? <div className='flex items-center justify-center h-full w-full'>
                                     <FadeLoader color="#183DA7" />
                                 </div> :
                                     
-                                    (qrImage && (<>
-                                        <div className='items-center justify-center flex flex-col'>
+                                    (qrShow && (
+                                    <>
+                                        <div className='items-center justify-center flex flex-col rounded-[8px]'>
                                             <Image src="/image/Scanner 3.svg" width={40} height={40} alt='scan' />
                                             <h1 className=' text-[#141414] text-[24px] mt-[10px] md:text-[30px] medium md:leading-[38px] '>QR-CODE</h1>
                                             <h2 className=' text-[#9E9E9E] md:text-[14px] md:leading-[22px] md:font-[400] text-[12px] '>Track student attendance with this QR Code</h2>
@@ -242,7 +246,7 @@ const Home = () => {
                                 </div>
                             </div>
 
-                            {selectedStudent?.length > 0 ? <Attendance setQrLoad={setQrLoad} setQrImage={setQrImage} load={load} setLoad={setLoad} setOpenModal={setOpenModal} setSelectedCourse={setSelectedCourse} openModal={openModal} selectedStudent={selectedStudent} /> :
+                            {selectedStudent?.length > 0 ? <Attendance qrImage={qrImage} setQrShow={setQrShow} setQrLoad={setQrLoad} setQrImage={setQrImage} load={load} setLoad={setLoad} setOpenModal={setOpenModal} setSelectedCourse={setSelectedCourse} openModal={openModal} selectedStudent={selectedStudent} /> :
                                 load ? <div className='flex items-center justify-center h-[60vh] w-full'>
                                     <FadeLoader color="#183DA7" />
                                 </div> :
