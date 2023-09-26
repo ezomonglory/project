@@ -50,7 +50,7 @@ const Sidebar = ({ setOpenModal }) => {
 
                 <div className="cursor-pointer"
                     onClick={() => {
-                        router.push("/SignIn")
+                        router.push("/")
                     }}
                 >
                     <SidebarBtn icon="Logout 2.svg" text="Logout" />
