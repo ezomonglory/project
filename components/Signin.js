@@ -88,7 +88,7 @@ const Signin = () => {
                 </div>
             </div>
             <div className="md:hidden text-center mt-[16px] medium">
-                <h2>New to AttendX? <a href="/" className="text-[#183DA7]">Sign up </a></h2>
+                <h2>New to AttendX? <a href="/SignUp" className="text-[#183DA7]">Sign up </a></h2>
             </div>
         </div>
     )

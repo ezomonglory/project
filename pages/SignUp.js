@@ -16,11 +16,11 @@ export default function Home() {
 
             <main className="bg-[#FFFFFF] px-[16px] md:px-[64px] h-screen md:h-full flex justify-center items-center flex-col">
 
-                <SignupHeader login="true" />
+                <SignupHeader  />
 
                 <div className="w-full md:w-[490px] mx-auto mb-[100px]">
                     <div className="md:mt-[60px] md:w-[450px] mx-auto">
-                        <Signin />
+                        <SignUpMain />
                     </div>
                 </div>
             </main>

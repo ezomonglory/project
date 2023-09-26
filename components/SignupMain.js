@@ -95,7 +95,7 @@ const SignUpMain = () => {
                     <Button text={load ? <ClipLoader color="white" size={18} /> : "Create Account"} />
                 </div>
                 <div className="md:hidden text-center mt-[16px] medium">
-                    <h2>Not new to AttendX? <a href="/SignIn" className="text-[#183DA7]">Sign in</a></h2>
+                    <h2>Not new to AttendX? <a href="/" className="text-[#183DA7]">Sign in</a></h2>
                 </div>
             </div>
 

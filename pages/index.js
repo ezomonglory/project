@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import SignupHeader from '../components/SignupHeader'
 import SignUpMain from '../components/SignupMain'
+import Signin from '../components/Signin'
 
 
 
@@ -16,10 +17,10 @@ export default function Home() {
 
             <main className="bg-[#FFFFFF] md:px-[64px] px-[16px] flex flex-col items-center h-screen md:h-full justify-center ">
 
-                <SignupHeader />
+                <SignupHeader login="true" />
 
                 <div className=" md:w-[490px] w-full md:mx-auto md:mt-[60px] md:mb-[100px]">
-                    <SignUpMain />
+                    <Signin />
                 </div>
             </main>
 
