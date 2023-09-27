@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 
-
 @font-face {
 	font-family: "neue_montrealmedium";
 	src: url("../fonts/neuemontreal-medium-webfont.woff2") format("woff2"),
