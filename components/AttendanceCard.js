@@ -10,11 +10,17 @@ const AttendanceCard = ({ course, percentage }) => {
             <div className='text-left  '>
                 {
                     percentage === "null%" ?
-                     (<h1 className='text-[#141414] text-[14px] '> No classes yet </h1>) 
-                    :
-                     (<h1 className='text-[#141414] text-[30px] leading-[32px] md:text-[46px] md:leading-[54px] '>{percentage}</h1>)
+                        (<h1 className='text-[#141414] text-[14px] '> <br/> <br/> </h1>)
+                        :
+                        (<h1 className='text-[#141414] text-[30px] leading-[32px] md:text-[46px] md:leading-[54px] '>{percentage}</h1>)
                 }
-                <h2 className=' text-[#9E9E9E] text-[14px]  '>Class Attended</h2>
+                {
+                    percentage === "null%" ?
+                        (<h2 className=' text-[#9E9E9E] text-[14px]  '>No Classes yet</h2>)
+                        :
+                        (<h1 className='text-[#9E9E9E] text-[14px] '>Classes Attended</h1>)
+                }
+
             </div>
         </div>
     )

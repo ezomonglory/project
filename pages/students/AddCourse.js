@@ -7,8 +7,11 @@ import CourseModal from '../../components/CourseModal';
 import axios from 'axios';
 import { FadeLoader } from 'react-spinners';
 import StudentHeader from '../../components/StudentHeader';
+import { useRouter } from 'next/navigation';
 
 const AddCourse = () => {
+
+    const Router = useRouter()
 
 
     const [open, setOpen] = useState(false)
@@ -114,14 +117,30 @@ const AddCourse = () => {
             <main >
 
 
-                {open ? <CourseModal text="update" texting="updating" user={User} Attendance={checkBoxList} setOpen={setOpen} color="bg-[#183DA7]" icon="image/Notebook.svg" /> :
+                {open ? <CourseModal text="update" texting="updating" user={User} Attendance={checkBoxList} setOpen={setOpen} color="bg-[#183DA7]" icon="/image/Update Course.svg" /> :
 
                     < >
                         <StudentHeader />
 
                         <div className='bg-[#F4F4F4] w-full py-[40px] md:px-[40px] px-[16px] h-screen '>
-                            <div className=' flex pb-[16px] md:pb-[32px] justify-between items-center'>
+                            <div className=' flex flex-col pb-[16px] md:pb-[32px] justify-between items-start gap-[8px]'>
                                 <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium  '> Add new course </h1>
+
+
+                                <div className='flex items-center gap-[8px]' >
+                                    <div className='flex items-center gap-[8px] text-[#9e9e9e] cursor-pointer'>
+                                        <p onClick={() => {
+                                            Router.push("/students/course")
+                                        }}>Courses </p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                            <path d="M9 5L15 12L9 19" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+
+                                    <p className='text-[#141414]'>
+                                        Add Courses
+                                    </p>
+                                </div>
                             </div>
 
 
@@ -152,9 +171,6 @@ const AddCourse = () => {
                                                                     id={Attendance._id}
                                                                     checked={checkBoxList[Attendance._id]}
                                                                     onChange={(e) => { handleChange(e) }}
-                                                                // onClick={() => {
-                                                                //     checkChecked()
-                                                                // }}
                                                                 /></td>
                                                             <td className='text-[14px] md:text-[16px]'>{Attendance.course_semester}</td>
                                                             <td className='text-[14px] md:text-[16px]'>{Attendance.course_code}</td>

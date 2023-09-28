@@ -102,26 +102,38 @@ const Index = () => {
                     <>
 
                         <StudentHeader />
-                        <div className='md:px-[128px] mt-[40px] px-[20px] h-full'>
+                        <div className='md:px-[128px] mt-[40px] px-[20px] h-full  pb-[400px]'>
                             <div className='flex items-center justify-between mb-[32px]'>
                                 <h1 className='text-[18px] md:text-[30px] medium text-[#141414]'>Class Attendance</h1>
                                 <div className='bg-[#183DA7] rounded-md py-[8px] px-[16px] md:flex space-x-[8px] cursor-pointer hidden' onClick={() => {
                                     setScan(true)
                                 }}>
-                                    <Image src="/image/Frame.svg" width={20} height={20} alt="scan" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M10 22C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 18.7712 2 15" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M22 15C22 18.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M14 2C17.7712 2 19.6569 2 20.8284 3.17157C22 4.34315 22 5.22876 22 9" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M10 2C6.22876 2 4.34315 2 3.17157 3.17157C2 4.34315 2 5.22876 2 9" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M2 12H22" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
                                     <h2 className='text-white'>Scan Code</h2>
                                 </div>
                                 <div className='fixed right-[20px] items-center justify-center flex bottom-[20%] bg-[#183DA7] rounded-full w-[48px] h-[48px] md:hidden' onClick={() => {
                                     setScan(true)
                                 }}>
-                                    <Image src="/image/Frame.svg" width={20} height={20} alt="scan" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M10 22C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 18.7712 2 15" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M22 15C22 18.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M14 2C17.7712 2 19.6569 2 20.8284 3.17157C22 4.34315 22 5.22876 22 9" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M10 2C6.22876 2 4.34315 2 3.17157 3.17157C2 4.34315 2 5.22876 2 9" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M2 12H22" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
                                 </div>
 
 
 
 
                             </div>
-                           <AttendanceGrid  />
+                            <AttendanceGrid />
                         </div>
 
 

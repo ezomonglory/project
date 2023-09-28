@@ -104,7 +104,7 @@ const Course = () => {
                         <div>  <Image src="/image/Teacher.svg" className='hidden md:block' width={430} height={300} alt="teacher" /> <Image src="/image/Teacher.svg" className='block md:hidden' width={330} height={250} alt="teacher" />  <p className='text-[#505050] font-[500] text-center '>
                             An error occured please check if you are connected <br /> to the internet and try again</p> </div>
                     </div> : Attendance.length >= 1 ?
-                        open ? <CourseModal ID={ID} setLoad={setLoad} user={user} Attendance={Attendance} setAttendance={setAttendance} text="delete" texting="removal" color="bg-red-600" setOpen={setOpen} icon="/image/Danger Circle.svg" /> :
+                        open ? <CourseModal ID={ID} setLoad={setLoad} user={user} Attendance={Attendance} setAttendance={setAttendance} text="delete" texting="removal" color="bg-red-600" setOpen={setOpen} icon="/image/Warning Icon.svg" /> :
                             <>
                                 <StudentHeader />
 
@@ -145,7 +145,7 @@ const Course = () => {
                                                         <td className='text-[14px] md:text-[16px]'>{Attendance.course_title}</td>
                                                         <td className='text-[14px] md:text-[16px]'>{Attendance.course_credit}</td>
                                                         <td className=''>
-                                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[3px] text-[#C60000]  border-[0.5px] border-[#C60000] rounded-md cursor-pointer  inline-block' onClick={() => {
+                                                            <div className='text-[12px] md:text-[12px] px-[12px] py-[3px] text-[#C60000]  border-[1.5px] border-[#ffe3e3] rounded-[2px] cursor-pointer  inline-block' onClick={() => {
                                                                 setID(Attendance.course_code)
                                                                 setOpen(true)
                                                             }} >

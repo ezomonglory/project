@@ -21,26 +21,32 @@ const StudentHeader = ({ }) => {
                     <Image src="/image/studlogo.svg" width={114} height={32} alt="logo" />
                     <div className='flex space-x-[16px]  '>
                         <Navlink href="/students">
-                            <h1 className=' text-[16px] medium ' >Attendance</h1>
+                            <h1 className=' text-[16px] medium text-[#9e9e9e] ' >Attendance</h1>
                         </Navlink>
 
                         <Navlink href="/students/course">
-                            <h1 className=' text-[16px] medium '>Course</h1>
+                            <h1 className=' text-[16px] medium text-[#9e9e9e] '>Courses</h1>
                         </Navlink>
                     </div>
                 </div>
 
-                <div className='  cursor-pointer  flex items-center gap-[8px] '
-                    onClick={() => {
-                        router.push("/")
-                    }}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                        <path d="M7.625 5.83333C7.63509 4.02081 7.71546 3.03922 8.35578 2.3989C9.08802 1.66667 10.2665 1.66667 12.6236 1.66667L13.4569 1.66667C15.8139 1.66667 16.9924 1.66667 17.7247 2.3989C18.4569 3.13113 18.4569 4.30964 18.4569 6.66667L18.4569 13.3333C18.4569 15.6904 18.4569 16.8689 17.7247 17.6011C16.9924 18.3333 15.8139 18.3333 13.4569 18.3333L12.6236 18.3333C10.2665 18.3333 9.08802 18.3333 8.35578 17.6011C7.71546 16.9608 7.63509 15.9792 7.625 14.1667" stroke="#C60000" stroke-width="1.5" stroke-linecap="round" />
-                        <path d="M12.623 10L1.78971 10M1.78971 10L4.70638 7.5M1.78971 10L4.70638 12.5" stroke="#C60000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+
+
+                <div className='flex items-center gap-[24px]' >
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M23.6663 11.9999C23.6663 18.4432 18.443 23.6666 11.9997 23.6666C5.55635 23.6666 0.333008 18.4432 0.333008 11.9999C0.333008 5.5566 5.55635 0.333252 11.9997 0.333252C18.443 0.333252 23.6663 5.5566 23.6663 11.9999ZM15.4997 8.49992C15.4997 10.4329 13.9327 11.9999 11.9997 11.9999C10.0667 11.9999 8.49967 10.4329 8.49967 8.49992C8.49967 6.56692 10.0667 4.99992 11.9997 4.99992C13.9327 4.99992 15.4997 6.56692 15.4997 8.49992ZM11.9997 21.9166C14.081 21.9166 16.0127 21.2754 17.6077 20.1797C18.3123 19.6957 18.6133 18.7739 18.2037 18.0237C17.3546 16.4685 15.6049 15.4999 11.9996 15.4999C8.39431 15.4999 6.64464 16.4685 5.79551 18.0236C5.3859 18.7738 5.68696 19.6956 6.39146 20.1796C7.98656 21.2753 9.91822 21.9166 11.9997 21.9166Z" fill="#808080" />
                     </svg>
 
-                    <h1 className='text-[#C60000] medium '>Logout</h1>
+                    <div className='  cursor-pointer  flex items-center gap-[8px] '
+                        onClick={() => {
+                            router.push("/")
+                        }}
+                    >
+
+
+                        <h1 className='text-[#9e9e9e] medium '>Logout</h1>
+                    </div>
                 </div>
             </div>
 

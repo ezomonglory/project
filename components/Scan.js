@@ -101,7 +101,7 @@ export default class App extends Component {
         validFrom: "",
         validTo: "",
         errors: [],
-        scanModal:false
+        scanModal: false
     };
 
     validPrefix = () => {
@@ -207,7 +207,7 @@ export default class App extends Component {
     handleClick = () => {
         this.setState({ showCam: !this.state.showCam });
     };
-    
+
 
     // handleChange = (event) => {
     //     this.setState({ qrCodeContent: event.target.value });
@@ -233,17 +233,17 @@ export default class App extends Component {
                     <div>
                         {/* <div className='h-screen flex items-center justify-center bg-black px-[20px] '>
                             <div className='bg-white  rounded-md md:w-[451px] md:h-[316px] flex flex-col space-y-[32px] py-[20px] px-[28px] mx-auto justify-center items-center'> */}
-                                <QrReader
-                                    constraints={{
-                                        facingMode: "environment"
-                                    }}
-                                    delay={300}
-                                    onResult={
-                                        this.handleScan
-                                    }
-                                    style={{ width: "100%" }}
-                                />
-                            {/* </div>
+                        <QrReader
+                            constraints={{
+                                facingMode: "environment"
+                            }}
+                            delay={300}
+                            onResult={
+                                this.handleScan
+                            }
+                            style={{ width: "100%" }}
+                        />
+                        {/* </div>
 
                         </div> */}
                     </div>

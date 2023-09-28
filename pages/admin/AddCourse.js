@@ -74,7 +74,7 @@ const AddCourse = () => {
 
     }
 
-    const getCourse = async (course) => {        
+    const getCourse = async (course) => {
         console.log("Course called")
         setLoad(true)
         await axios.get(`https://attendx-2hi6.onrender.com/course/all-courses`).then((res) => {
@@ -112,10 +112,25 @@ const AddCourse = () => {
 
                     <DashboardLayout>
 
-                        <div className='pb-[24px] md:pb-[32px]   md:flex justify-between items-center'>
+                        <div className='pb-[24px] md:pb-[32px]  gap-[4px]  md:flex justify-between items-center'>
                             <h1 className='text-[#141414] font-[500] text-[20px] mt-[8px] md:mt-0 md:text-[30px] leading-[28px]  md:leading-[38px] medium  '> Add new course </h1>
 
-                            <hr className='h-[1px] md:hidden bg-[#d9d9d9] w-full relative mt-[16px]  ml-[-16px]  ' />
+                            <div className='flex items-center gap-[8px]' >
+                                <div className='flex items-center gap-[8px] text-[#9e9e9e] cursor-pointer'>
+                                    <p onClick={() => {
+                                        Router.push("/students/course")
+                                    }}>Courses </p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 5L15 12L9 19" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+
+                                <p className='text-[#141414]'>
+                                    Add Courses
+                                </p>
+                            </div>
+
+                            <hr className='h-[1px] md:hidden bg-[#d9d9d9] w-full relative mt-[12]  ml-[-16px]  ' />
 
                         </div>
 
