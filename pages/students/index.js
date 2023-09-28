@@ -102,7 +102,7 @@ const Index = () => {
                     <>
 
                         <StudentHeader />
-                        <div className='md:px-[128px] mt-[40px] px-[20px] h-screen'>
+                        <div className='md:px-[128px] mt-[40px] px-[20px] h-full'>
                             <div className='flex items-center justify-between mb-[32px]'>
                                 <h1 className='text-[18px] md:text-[30px] medium text-[#141414]'>Class Attendance</h1>
                                 <div className='bg-[#183DA7] rounded-md py-[8px] px-[16px] md:flex space-x-[8px] cursor-pointer hidden' onClick={() => {
