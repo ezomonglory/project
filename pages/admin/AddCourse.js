@@ -112,10 +112,10 @@ const AddCourse = () => {
 
                     <DashboardLayout>
 
-                        <div className='pb-[24px] md:pb-[32px]  gap-[4px]  md:flex justify-between items-center'>
+                        <div className='pb-[24px] md:pb-[32px]  gap-[4px]  flex-col  flex justify-between items-start'>
                             <h1 className='text-[#141414] font-[500] text-[20px] mt-[8px] md:mt-0 md:text-[30px] leading-[28px]  md:leading-[38px] medium  '> Add new course </h1>
 
-                            <div className='flex items-center gap-[8px]' >
+                            <div className='flex   items-start gap-[8px]' >
                                 <div className='flex items-center gap-[8px] text-[#9e9e9e] cursor-pointer'>
                                     <p onClick={() => {
                                         Router.push("/students/course")
