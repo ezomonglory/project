@@ -24,6 +24,7 @@ const AddCourse = () => {
 
 
     useEffect(() => {
+        setLoad(true)
         const user = JSON.parse(window.localStorage.getItem("user"))
         if (user) {
             setUser(user)
@@ -73,8 +74,7 @@ const AddCourse = () => {
 
     }
 
-    const getCourse = async (course) => {
-        setLoad(true)
+    const getCourse = async (course) => {        
         console.log("Course called")
         setLoad(true)
         await axios.get(`https://attendx-2hi6.onrender.com/course/all-courses`).then((res) => {
@@ -129,7 +129,7 @@ const AddCourse = () => {
                                     </div> : <table className='w-[900px] bg-transparent'>
                                         <thead className=' w-full'>
                                             <tr>
-                                                <td className='text-[14px] md:text-[16px]'><input type='checkbox' disabled /></td>
+                                                <td className='text-[14px] md:text-[16px]'><input type='checkbox' disabled value="checked" />  </td>
                                                 <td className='text-[14px] md:text-[16px]'>Semester</td>
                                                 <td className='text-[14px] md:text-[16px]'>Course Code</td>
                                                 <td className='text-[14px] md:text-[16px]'>Course Title</td>
@@ -137,7 +137,6 @@ const AddCourse = () => {
 
                                             </tr>
                                         </thead>
-
 
                                         <tbody >
                                             {Attendance?.map((Attendance, index) => (

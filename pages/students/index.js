@@ -20,71 +20,71 @@ const Index = () => {
     const sessionArray = []
     const userArray = []
 
-    useEffect(() => {
-        const user = JSON.parse(window.localStorage.getItem("user"))
-        if (user) {
-            setUser(user)
-        }
-    }, [])
+    // useEffect(() => {
+    //     const user = JSON.parse(window.localStorage.getItem("user"))
+    //     if (user) {
+    //         setUser(user)
+    //     }
+    // }, [])
 
-    useEffect(() => {
-        if (user) {
-            setCourses(user.courses)
-        }
-    }, [user])
+    // useEffect(() => {
+    //     if (user) {
+    //         setCourses(user.courses)
+    //     }
+    // }, [user])
 
-    useEffect(() => {
-        if (courses) {
-            courses?.forEach(element => {
-                getSession(element.id)
-            });
+    // useEffect(() => {
+    //     if (courses) {
+    //         courses?.forEach(element => {
+    //             getSession(element.id)
+    //         });
 
-        }
-
-
-    }, [courses])
-
-    useEffect(() => {
-        console.log("calllld")
-        if (!called) {
-            console.log(course)
-        }
+    //     }
 
 
-    }, [called])
+    // }, [courses])
+
+    // useEffect(() => {
+    //     console.log("calllld")
+    //     if (!called) {
+    //         console.log(course)
+    //     }
 
 
-    const getSession = async (id) => {
-        await axios.get(`https://attendx-2hi6.onrender.com/session/get-session/${id}`).then((res) => {
-            console.log(res)
+    // }, [called])
 
 
-            res.data.forEach((data) => {
-                sessionArray.push({ course_code: data.course_code })
-                console.log(res)
-                // Session.push(data)
-                if (!course.includes({ "course_code": data.course_code, "percentage": 0 })) {
-                    course.push({ "course_code": data.course_code, "percentage": 0 })
-                }
-                data.attendance.forEach((attend) => {
-                    if (attend.matric_number === user.identity_number) {
-                        userArray.push({"course_code":data.course_code})
-
-                    }
-                })
-            })
-
-            sessionArray.length > 0 && setSession(sessionArray)
-            userArray.length > 0 && setAttendance(userArray)
+    // const getSession = async (id) => {
+    //     await axios.get(`https://attendx-2hi6.onrender.com/session/get-session/${id}`).then((res) => {
+    //         console.log(res)
 
 
-            console.log({ "Session": sessionArray, "user": userArray })
+    //         res.data.forEach((data) => {
+    //             sessionArray.push({ course_code: data.course_code })
+    //             console.log(res)
+    //             // Session.push(data)
+    //             if (!course.includes({ "course_code": data.course_code, "percentage": 0 })) {
+    //                 course.push({ "course_code": data.course_code, "percentage": 0 })
+    //             }
+    //             data.attendance.forEach((attend) => {
+    //                 if (attend.matric_number === user.identity_number) {
+    //                     userArray.push({"course_code":data.course_code})
 
-        })
+    //                 }
+    //             })
+    //         })
+
+    //         sessionArray.length > 0 && setSession(sessionArray)
+    //         userArray.length > 0 && setAttendance(userArray)
+
+
+    //         console.log({ "Session": sessionArray, "user": userArray })
+
+    //     })
 
 
 
-    }
+    // }
 
 
     return (
@@ -102,7 +102,7 @@ const Index = () => {
                     <>
 
                         <StudentHeader />
-                        {/* <div className='md:px-[128px] mt-[40px] px-[20px] h-screen'>
+                        <div className='md:px-[128px] mt-[40px] px-[20px] h-screen'>
                             <div className='flex items-center justify-between mb-[32px]'>
                                 <h1 className='text-[18px] md:text-[30px] medium text-[#141414]'>Class Attendance</h1>
                                 <div className='bg-[#183DA7] rounded-md py-[8px] px-[16px] md:flex space-x-[8px] cursor-pointer hidden' onClick={() => {
@@ -121,14 +121,11 @@ const Index = () => {
 
 
                             </div>
-                            {attendance.length > 0 && (<AttendanceGrid session={Session} attendance={attendance} course={course} />)}
-                        </div> */}
-
-                        <div className='h-screen flex items-center justify-center'>
-                            COMING SOON..........
+                           <AttendanceGrid  />
                         </div>
-                        
-                        </>
+
+
+                    </>
                 }
             </main>
 

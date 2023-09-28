@@ -108,7 +108,7 @@ const Course = () => {
                             <>
                                 <StudentHeader />
 
-                                <div className='w-full h-full md:p-[40px] bg-[#F4F4F4] '>
+                                <div className='w-full h-full md:px-[40px] bg-[#F4F4F4] '>
                                     <div className='pb-[16px]  md:pb-[32px] flex justify-between items-center pt-[40px] '>
                                         <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium ml-[16px] md:ml-0 '> Courses </h1>
                                         <div className='hidden md:flex bg-[#183DA7] px-[16px] py-[8px]  space-x-[8px] text-white items-center rounded-md cursor-pointer' onClick={() => {
