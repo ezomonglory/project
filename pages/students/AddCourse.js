@@ -122,8 +122,8 @@ const AddCourse = () => {
                     < >
                         <StudentHeader />
 
-                        <div className='bg-[#F4F4F4] w-full py-[40px] md:px-[40px] px-[16px] h-screen '>
-                            <div className=' flex flex-col pb-[16px] md:pb-[32px] justify-between items-start gap-[8px]'>
+                        <div className='bg-[#F4F4F4] w-full py-[32px] md:px-[40px] px-[16px] h-screen '>
+                            <div className=' flex flex-col space-y-[4px] md:space-y-[8px] pb-[16px] md:pb-[32px] justify-between items-start '>
                                 <h1 className='text-[#141414] font-[500] text-[18px]  md:text-[30px] leading-[28px]  md:leading-[38px] medium  '> Add new course </h1>
 
 
