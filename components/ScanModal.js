@@ -52,14 +52,14 @@ const ScanModal = ({ qrCode }) => {
         <div className='h-screen flex items-center justify-center bg-black p-[20px] '>
             <div className='bg-white  rounded-[8px] md:w-[451px] md:h-[316px] flex flex-col space-y-[32px] py-[40px] px-[40px] mx-auto justify-center items-center'>
 
-                <div className='flex flex-col items-center space-y-[8px'>
+                <div className='flex flex-col items-center space-y-[8px]'>
                     <h1 className='text-[#8a8a8a] medium text-[20px] leading-[24px] text-center ' >Student Details</h1>
 
                     <div className=' flex flex-col space-y-[8px] '>
                         {user && (
                             <div className='flex items-center flex-col' >
-                                <h1 className='uppercase' >Name: {user.full_name} </h1>
-                                <h1 className='uppercase' >Matric Number: {user.identity_number} </h1>
+                                <h1 className='capitalize' >Name: {user.full_name} </h1>
+                                <h1 className='' >Matric Number:  <span className='uppercase' >{user.identity_number} </span> </h1>
                             </div>
                         )}
                     </div>
