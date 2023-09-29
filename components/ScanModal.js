@@ -67,7 +67,7 @@ const ScanModal = ({ qrCode }) => {
 
                 <div className='flex  space-x-[32px]  '>
                     <div className='w-[110px] h-[40px]   cursor-pointer bg-[#fff] text-[#323232]  flex items-center justify-center text-center rounded-[4px] medium leading-[24px] border-[1px] border-[#cdced9]  ' onClick={() => {
-                        setOpen(false)
+                        window.location.reload()
                     }}> Cancel </div>
 
                     <div className={`w-[110px] h-[40px]  cursor-pointer  text-white  flex items-center justify-center text-center rounded-[4px] medium leading-[24px] bg-[#183DA7] `}
