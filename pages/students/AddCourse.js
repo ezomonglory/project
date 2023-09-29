@@ -152,7 +152,7 @@ const AddCourse = () => {
                                     load ? <div className='flex items-center justify-center h-full w-full'>
                                         < FadeLoader color="#183DA7" />
                                     </div> : <>
-                                        <div className='w-full flex  h-[65vh] bg-transparentoverflow-scroll scroll-hidden overflow-x-scroll scroll-hidden '>
+                                        <div className='w-full flex ml-[-16px] md:ml-0  h-[65vh] bg-transparentoverflow-scroll scroll-hidden overflow-x-scroll scroll-hidden '>
                                             <table className='min-w-[900px] w-full bg-transparent'>
                                                 <thead className='bg-gray-200 w-full'>
                                                     <tr>
