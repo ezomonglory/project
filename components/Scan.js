@@ -224,49 +224,49 @@ export default class App extends Component {
     render() {
         return (
             this.state.scanModal ? <ScanModal qrCode={this.state.qrCodeContent} /> : <div>
-                <button onClick={this.handleClick}>
+                {/* <button onClick={this.handleClick}>
                     {this.state.showCam
                         ? " Close camera reader..."
                         : " Open camera reader"}
-                </button>
-                {this.state.showCam ? (
-                    <div>
-                        {/* <div className='h-screen flex items-center justify-center bg-black px-[20px] '>
+                </button> */}
+                {/* {this.state.showCam ? ( */}
+                <div className="">
+                    {/* <div className='h-screen flex items-center justify-center bg-black px-[20px] '>
                             <div className='bg-white  rounded-md md:w-[451px] md:h-[316px] flex flex-col space-y-[32px] py-[20px] px-[28px] mx-auto justify-center items-center'> */}
-                        <QrReader
-                            constraints={{
-                                facingMode: "environment"
-                            }}
-                            delay={300}
-                            onResult={
-                                this.handleScan
-                            }
-                            style={{ width: "100%" }}
-                        />
-                        {/* </div>
+                    <QrReader
+                        constraints={{
+                            facingMode: "environment"
+                        }}
+                        delay={300}
+                        onResult={
+                            this.handleScan
+                        }
+                        style={{ width: "100%" }}
+                    />
+                    {/* </div>
 
                         </div> */}
-                    </div>
+                </div>
 
-                ) : null
-                }
+                {/* ) : null
+                } */}
 
-                {
+                {/* {
                     this.state.errors.length > 0 && <p>Errors</p> &&
                     this.state.errors.map((error, i) => (
                         <div className="" key={i}>
                             {error.message}
                         </div>
                     ))
-                }
+                } */}
 
-                <p>QR Code</p>
-                <textarea
+                {/* <p>QR Code</p> */}
+                {/* <textarea
                     rows="10"
                     cols="50"
                     value={this.state.qrCodeContent}
                     onChange={this.handleChange}
-                />
+                /> */}
             </div >
         );
     }

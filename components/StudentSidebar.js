@@ -29,7 +29,7 @@ const StudentSidebar = ({ setOpenModal }) => {
                 </Navlink>
 
                 <Navlink href="#">
-                    <SidebarBtn tru={true} icon="Notebook.svg" text="Profile" href="/students/course" />
+                    <SidebarBtn tru={true} icon="Notebook.svg" text="Profile" href="" />
                 </Navlink>
             </div>
 

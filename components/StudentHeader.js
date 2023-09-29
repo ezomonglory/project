@@ -16,7 +16,7 @@ const StudentHeader = ({ }) => {
 
         <>
 
-            <div className=' space-x-[32px] items-center justify-between md:py-[20px] md:px-[20px] bg-[#F4F4F4]  border-[0.5px] border-b-[#D9D9D9] border-transparent hidden md:flex'>
+            <div className=' space-x-[32px] items-center justify-between md:py-[20px] md:px-[20px] bg-[#F4F4F4]  border-[0.5px] md:border-b-[#D9D9D9] border-transparent hidden md:flex'>
                 <div className='flex space-x-[32px] items-center'>
                     <Image src="/image/studlogo.svg" width={114} height={32} alt="logo" />
                     <div className='flex space-x-[16px]  '>
