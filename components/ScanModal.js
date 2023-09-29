@@ -50,8 +50,10 @@ const ScanModal = ({ qrCode }) => {
     return (
 
         <div className='h-screen flex items-center justify-center bg-black p-[20px] '>
-            <div className='bg-white  rounded-[8px] md:w-[451px] md:h-[316px] flex flex-col space-y-[32px] py-[40px] px-[40px] mx-auto justify-center items-start'>
-                {/* <Image src={icon} width={40} height={40} alt="icon" className='mx-auto' /> */}
+            <div className='bg-white  rounded-[8px] md:w-[451px] md:h-[316px] flex flex-col space-y-[32px] py-[40px] px-[40px] mx-auto justify-center items-center'> 
+
+                <h1 className='text-[#8a8a8a] medium text-[16px] text-center ' >Submit Details</h1>
+
                 <div className=' flex flex-col space-y-[8px] '>                   
                    {user && (
                     <div>                        
@@ -62,16 +64,16 @@ const ScanModal = ({ qrCode }) => {
                 </div>
 
                 <div className='flex  space-x-[32px]  '>
-                    <div className='w-[110px] h-[40px]   cursor-pointer bg-[#fff] text-[#323232]  flex items-center justify-center text-center rounded-[4px] leading-[24px] border-[0.5px] border-[#323232]  ' onClick={() => {
+                    <div className='w-[110px] h-[40px]   cursor-pointer bg-[#fff] text-[#323232]  flex items-center justify-center text-center rounded-[4px] medium leading-[24px] border-[0.5px] border-[#323232]  ' onClick={() => {
                         setOpen(false)
                     }}> Cancel </div>
 
-                    <div className={`w-[110px] h-[40px]  cursor-pointer  text-white  flex items-center justify-center text-center rounded-[4px] leading-[24px] bg-[#183DA7] `}
+                    <div className={`w-[110px] h-[40px]  cursor-pointer  text-white  flex items-center justify-center text-center rounded-[4px] medium leading-[24px] bg-[#183DA7] `}
                         onClick={() => {
                             signAttendance()
                         }}
                     >
-                        {btnLoad ? <ClipLoader color="white" size={18} /> : "Submit"}
+                        {btnLoad ? <ClipLoader color="white" size={18} /> : "Confirm"}
                     </div>
 
                 </div>

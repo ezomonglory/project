@@ -79,7 +79,7 @@ const SignUpMain = () => {
                                 try {
                                     const res = axios.post("https://attendx-2hi6.onrender.com/auth/register", data)
                                     res.then(() => {
-                                        router.push("/SignIn")
+                                        router.push("/")
                                         setLoad(false)
                                     }).catch((err) => {
                                         setLoad(false)
