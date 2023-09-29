@@ -51,7 +51,7 @@ const StudentHeader = ({ }) => {
             </div>
 
 
-            <div className='flex justify-between items-center w-full md:hidden  bg-[#F4F4F4]  border-[0.5px] border-b-[#D9D9D9] border-transparent py-[32px] px-[16px] cursor-pointer '>
+            <div className='flex justify-between items-center w-full md:hidden  bg-[#F4F4F4]  border-[0.5px] md:border-b-[#D9D9D9] border-transparent pt-[32px] px-[16px] cursor-pointer '>
                 <div className={` fixed h-screen w-full z-50 top-0 animation  ${open ? "right-[0%] " : "right-[100%]"}`}>
                     <StudentSidebar setOpenModal={setOpen} />
                 </div>

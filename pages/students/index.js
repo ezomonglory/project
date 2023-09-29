@@ -103,7 +103,7 @@ const Index = () => {
 
                         <StudentHeader />
                         <div className='md:px-[128px] mt-[40px] px-[20px] h-full  pb-[400px]'>
-                            <div className='flex items-center justify-between mb-[32px]'>
+                            <div className='flex items-center justify-between mb-[32px] relative pb-[24px] md:pb-0 '>
                                 <h1 className='text-[18px] md:text-[30px] medium text-[#141414]'>Class Attendance</h1>
                                 <div className='bg-[#183DA7] rounded-md py-[8px] px-[16px] md:flex space-x-[8px] cursor-pointer hidden' onClick={() => {
                                     setScan(true)
@@ -117,6 +117,9 @@ const Index = () => {
                                     </svg>
                                     <h2 className='text-white'>Scan Code</h2>
                                 </div>
+
+                                <hr className='bg-[#D9D9D9] absolute md:hidden   left-[-16px] bottom-0 w-screen h-[2px] ' />
+
                                 <div className='fixed right-[20px] items-center justify-center flex bottom-[20%] bg-[#183DA7] rounded-full w-[48px] h-[48px] md:hidden' onClick={() => {
                                     setScan(true)
                                 }}>
