@@ -5,6 +5,7 @@ import Button from "./Button"
 import InputField from "./InputField"
 import { Router, useRouter } from "next/navigation"
 import axios from "axios"
+import { toast } from "react-toastify";
 
 
 const Signin = () => {
@@ -37,7 +38,7 @@ const Signin = () => {
                 </div>
 
                 <div className="">
-                    <InputField label={"Password"} type="text" ref={passwordRef} />
+                    <InputField label={"Password"} type="password" ref={passwordRef} />
                 </div>
             </div>
 
@@ -62,12 +63,17 @@ const Signin = () => {
                                     console.log(res);
 
                                     if (res.data) {
-                                        window.localStorage.setItem("user", JSON.stringify(res.data));
+                                        toast("Logged in successful, you will redirected shortly",{
+                                            autoClose:2500
+                                        })
+                                        setTimeout(() => {
+                                            window.localStorage.setItem("user", JSON.stringify(res.data));
                                         if (res.data.role === "teacher") {
                                             router.push("/admin/Student");
                                         } else if (res.data.role === "student") {
                                             router.push("/students");
                                         }
+                                        }, 3000);
                                     } else {
                                         // Handle the case where the response data is missing or invalid
                                         setErrorMessage("Invalid response from the server");
@@ -78,7 +84,7 @@ const Signin = () => {
                                 } catch (error) {
                                     // Handle any network or request-related errors
                                     setLoad(false);
-                                    setErrorMessage("An error occured please ensure that your username and password is correct");
+                                    toast.error(error.message);
                                     console.log(error);
                                 }
                             }

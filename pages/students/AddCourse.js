@@ -8,6 +8,7 @@ import axios from 'axios';
 import { FadeLoader } from 'react-spinners';
 import StudentHeader from '../../components/StudentHeader';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const AddCourse = () => {
 
@@ -115,6 +116,7 @@ const AddCourse = () => {
             </Head>
 
             <main >
+
 
 
                 {open ? <CourseModal text="update" texting="updating" user={User} Attendance={checkBoxList} setOpen={setOpen} color="bg-[#183DA7]" icon="/image/Update Course.svg" /> :

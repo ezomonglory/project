@@ -5,6 +5,7 @@ import Button from "./Button"
 import InputField from "./InputField"
 import { Router, useRouter } from "next/navigation"
 import axios from "axios"
+import { toast } from "react-toastify";
 
 
 
@@ -79,9 +80,19 @@ const SignUpMain = () => {
                                 try {
                                     const res = axios.post("https://attendx-2hi6.onrender.com/auth/register", data)
                                     res.then(() => {
-                                        router.push("/")
+                                        toast("Accout Created Successfully, you will be redirected shortly", {
+                                            autoClose:2500
+                                        })
+                                        setTimeout(()=> {
+                                            router.push("/")
                                         setLoad(false)
+                                        }, 3000)
                                     }).catch((err) => {
+                                        if(err.message === "Request failed with status code 409"){
+                                            toast.error("Account already exist")
+                                        }else{
+                                            toast.error(err.message)                                        
+                                        }
                                         setLoad(false)
                                         console.log(err)
                                     })

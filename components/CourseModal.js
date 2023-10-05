@@ -4,6 +4,7 @@ import Image from 'next/image'
 import axios from 'axios'
 import ClipLoader from "react-spinners/ClipLoader";
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 const CourseModal = ({ Attendance, setLoad, courses, user, setAttendance, ID, text, icon, color, setOpen, texting }) => {
 
@@ -23,6 +24,7 @@ const CourseModal = ({ Attendance, setLoad, courses, user, setAttendance, ID, te
             window.localStorage.setItem("user", JSON.stringify(res.data.user))
             setLoad(false)
             setBtnLoad(false)
+            toast("Course Deleted Successfully")
             // router.push("/admin/Course")
             window.location.reload()
 
@@ -49,9 +51,6 @@ const CourseModal = ({ Attendance, setLoad, courses, user, setAttendance, ID, te
         }
 
         console.log(data)
-        // const users = JSON.parse(window.localStorage.getItem("user"))
-        // const newCourses = [data.courses]
-        // users.courses = newCourses
 
 
         await axios.post("https://attendx-2hi6.onrender.com/course/add-course", data).then((res) => {
@@ -59,7 +58,7 @@ const CourseModal = ({ Attendance, setLoad, courses, user, setAttendance, ID, te
             console.log(res.data.user)
             setOpen(false)
             window.localStorage.setItem("user", JSON.stringify(res.data.user))              
-            console.log(router.pathname)
+            toast("Course Added Successfully")
             if (router.pathname === "/students/AddCourse") {
                 window.location.href = "/students/course"
             }
@@ -68,6 +67,7 @@ const CourseModal = ({ Attendance, setLoad, courses, user, setAttendance, ID, te
             }
         }).catch((err) => {
             console.log(err)
+            toast(err.message)
         })
     }
 
